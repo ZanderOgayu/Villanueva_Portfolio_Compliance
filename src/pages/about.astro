@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import educationData from '../data/education.json';
+import experienceData from '../data/experience.json';
+---
+
+<BaseLayout title="PERSONNEL FILE // ABOUT ZANDER">
+  <div class="container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">FILE NO. 01 // DOSSIER</span>
+      <h1 class="ark-header-title">OPERATOR BIOGRAPHY & BACKGROUND</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <!-- Biography Dossier -->
+    <section class="ark-bio-section ark-chamfer-box ark-reticle">
+      <div class="ark-bio-meta-row">
+        <span class="ark-pill ark-pill-amber">CLEARANCE: LEVEL 3</span>
+        <span class="ark-pill ark-pill-cyan">ACADEMIC INSTITUTION: PLV</span>
+        <span class="ark-pill">RESIDENCE: VALENZUELA, PH</span>
+      </div>
+
+      <div class="ark-bio-body">
+        <h2 class="ark-bio-heading">PROFESSIONAL OVERVIEW</h2>
+        <p class="ark-bio-text">
+          I am a third-year Information Technology student at <strong>Pamantasan ng Lungsod ng Valenzuela (PLV)</strong>, 
+          driven by a relentless curiosity about cutting-edge technologies, systems architecture, and software engineering. 
+          My technical journey spans responsive full-stack web applications, classical and hybrid cryptography in Python, 
+          enterprise network topology configuration with Cisco Packet Tracer, and interactive game development in Unity.
+        </p>
+        <p class="ark-bio-text">
+          Having completed an intensive 486-hour On-the-Job Training deployment at Our Lady of Fatima University (OLFU) IT&DS 
+          under System Administrator Marlon A. Enriquez, handling enterprise network routing, server rack overhauls, 
+          and hardware diagnostics, I bring a pragmatic, problem-solving mindset to real-world IT infrastructure challenges. 
+          I am eager to collaborate with engineering teams, contribute to scalable software solutions, and continually push my limits.
+        </p>
+      </div>
+
+      <div class="ark-services-grid">
+        <div class="ark-service-box">
+          <div class="ark-service-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>Full-Stack Web Development</h3>
+          <p>Building clean, semantic, responsive web applications using HTML5, CSS3, JavaScript, Node.js, and SQL.</p>
+        </div>
+        <div class="ark-service-box">
+          <div class="ark-service-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Network Engineering</h3>
+          <p>Cisco certified in routing, switching, subnetting, IPv4/IPv6 allocation, and topology troubleshooting.</p>
+        </div>
+        <div class="ark-service-box">
+          <div class="ark-service-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <h3>Game & Systems Programming</h3>
+          <p>Developing 2D interactive titles in Unity and C#, with games published on itch.io under Haraya Studios.</p>
+        </div>
+        <div class="ark-service-box">
+          <div class="ark-service-icon"><i class="fa-solid fa-server"></i></div>
+          <h3>System Administration</h3>
+          <p>Hands-on Ubuntu Linux server administration, shell scripting, package repository management, and storage setup.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section class="ark-timeline-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">TIMELINE // 01</span>
+        <h2 class="ark-header-title">ACADEMIC JOURNEY</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-timeline-list">
+        {educationData.map(edu => (
+          <div class="ark-timeline-item ark-chamfer-box">
+            <div class="ark-timeline-top">
+              <span class="ark-pill ark-pill-amber">{edu.period}</span>
+              <span class="ark-timeline-status">{edu.status}</span>
+            </div>
+            <h3 class="ark-timeline-institution">{edu.institution}</h3>
+            <h4 class="ark-timeline-degree">{edu.degree}</h4>
+            <span class="ark-timeline-loc"><i class="fa-solid fa-location-dot"></i> {edu.location}</span>
+            <ul class="ark-timeline-highlights">
+              {edu.highlights.map(h => (
+                <li><i class="fa-solid fa-check"></i> {h}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Work Experience Timeline -->
+    <section class="ark-timeline-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">TIMELINE // 02</span>
+        <h2 class="ark-header-title">FIELD EXPERIENCE & DEPLOYMENTS</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-timeline-list">
+        {experienceData.map(exp => (
+          <div class="ark-timeline-item ark-chamfer-box">
+            <div class="ark-timeline-top">
+              <span class="ark-pill ark-pill-cyan">{exp.period}</span>
+              <span class="ark-timeline-status">{exp.location}</span>
+            </div>
+            <h3 class="ark-timeline-institution">{exp.company}</h3>
+            <h4 class="ark-timeline-degree">{exp.role}</h4>
+            <p class="ark-exp-desc">{exp.description}</p>
+            <div class="ark-exp-skills">
+              {exp.skills_applied.map(s => (
+                <span class="ark-pill">{s}</span>
+              ))}
+            </div>
+            {exp.has_ojt_report && (
+              <div class="ark-exp-action">
+                <a href={`/ojt/${exp.ojt_slug}`} class="ark-btn-secondary">
+                  <i class="fa-solid fa-file-contract"></i> ACCESS DEDICATED OJT REPORT
+                </a>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .ark-bio-section {
+    padding: 36px;
+    margin-bottom: 48px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-bio-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ark-bio-heading {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 12px;
+  }
+
+  .ark-bio-text {
+    font-size: 0.95rem;
+    color: var(--ark-text-body);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .ark-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ark-border-subtle);
+  }
+
+  .ark-service-box {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 20px;
+    transition: var(--ark-transition);
+  }
+
+  .ark-service-box:hover {
+    border-color: var(--ark-amber);
+    transform: translateY(-2px);
+  }
+
+  .ark-service-icon {
+    font-size: 1.6rem;
+    color: var(--ark-amber);
+    margin-bottom: 10px;
+  }
+
+  .ark-service-box h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 6px;
+  }
+
+  .ark-service-box p {
+    font-size: 0.85rem;
+    color: var(--ark-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Timeline */
+  .ark-timeline-section {
+    margin-bottom: 48px;
+  }
+
+  .ark-timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ark-timeline-item {
+    padding: 24px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-timeline-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ark-timeline-status {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-timeline-institution {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 2px;
+  }
+
+  .ark-timeline-degree {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--ark-amber);
+    margin-bottom: 6px;
+  }
+
+  .ark-timeline-loc {
+    font-size: 0.78rem;
+    color: var(--ark-text-muted);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .ark-timeline-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ark-timeline-highlights li {
+    font-size: 0.85rem;
+    color: var(--ark-text-body);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .ark-timeline-highlights li i {
+    color: var(--ark-amber);
+    margin-top: 4px;
+    font-size: 0.75rem;
+  }
+
+  .ark-exp-desc {
+    font-size: 0.88rem;
+    color: var(--ark-text-body);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .ark-exp-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .ark-exp-action {
+    margin-top: 12px;
+  }
+</style>

@@ -1,0 +1,396 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import skillsData from '../data/skills.json';
+
+const featuredProjects = await getCollection('projects', ({ data }) => data.featured);
+featuredProjects.sort((a, b) => a.data.order - b.data.order);
+
+const aiSkillsCategory = skillsData.find(c => c.category_id === 'ai_tools');
+---
+
+<BaseLayout title="COMMAND CENTER // OPERATOR ZANDER">
+  <div class="container">
+    <!-- Hero / Operator Dossier Banner -->
+    <section class="ark-hero-section ark-chamfer-box ark-reticle">
+      <div class="ark-radar-beam"></div>
+      <div class="ark-hero-content">
+        <div class="ark-hero-badge-row">
+          <span class="ark-header-code">// OPERATOR IDENT: OP-4921</span>
+          <span class="ark-pill ark-pill-amber">STATUS: DEPLOYED</span>
+          <span class="ark-pill ark-pill-cyan">AFFILIATION: PLV IT</span>
+          <div class="ark-barcode">SYS.VER-4.9.21</div>
+        </div>
+
+        <h1 class="ark-hero-name">
+          ZANDER RHOI <span class="ark-glitch">VILLANUEVA</span>
+        </h1>
+
+        <p class="ark-hero-role">
+          FULL-STACK WEB DEVELOPER // NETWORK INFRASTRUCTURE SPECIALIST // 3RD YEAR IT
+        </p>
+
+        <p class="ark-hero-summary">
+          Undergraduate Information Technology student at Pamantasan ng Lungsod ng Valenzuela (PLV). 
+          Specialized in modern responsive web architecture, classical cryptography systems, Cisco enterprise network design, 
+          and AI-augmented engineering workflows.
+        </p>
+
+        <div class="ark-hero-cta">
+          <a href="/projects" class="ark-btn">
+            <i class="fa-solid fa-crosshairs"></i> EXPLORE OPERATIONS
+          </a>
+          <a href="/skills" class="ark-btn-secondary">
+            <i class="fa-solid fa-layer-group"></i> CAPABILITIES MATRIX
+          </a>
+          <a href="/ojt" class="ark-btn-secondary">
+            <i class="fa-solid fa-clipboard-check"></i> FIELD OJT LOGS
+          </a>
+        </div>
+      </div>
+
+      <div class="ark-hero-portrait-frame">
+        <div class="ark-portrait-wrapper ark-chamfer-box ark-reticle">
+          <img src="/assets/Profile Picture Portfolio.jfif" alt="Zander Rhoi Villanueva Portrait" class="ark-portrait-img" />
+          <div class="ark-portrait-overlay">
+            <span class="ark-portrait-label">CODENAME: ZANDER // OP-4921</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Tools Acceleration Highlight Panel -->
+    {aiSkillsCategory && (
+      <section class="ark-ai-highlight-section ark-chamfer-box ark-reticle">
+        <div class="ark-ai-banner-top">
+          <div class="ark-ai-tag">
+            <i class="fa-solid fa-microchip"></i> COGNITIVE WORKFLOW ACCELERATION
+          </div>
+          <span class="ark-pill ark-pill-cyan">MULTI-AGENT AUGMENTATION</span>
+        </div>
+
+        <h2 class="ark-ai-title">AI TOOLS APPLIED IN MODERN ENGINEERING</h2>
+        <p class="ark-ai-desc">
+          Leveraging cutting-edge generative AI models and autonomous agentic developer tools not as static logos, 
+          but as active productivity multipliers in systems architecture, code auditing, and research.
+        </p>
+
+        <div class="ark-ai-cards-grid">
+          {aiSkillsCategory.skills.map(tool => (
+            <div class="ark-ai-mini-card">
+              <div class="ark-ai-mini-header">
+                <i class={tool.icon}></i>
+                <h4>{tool.name}</h4>
+              </div>
+              <p class="ark-ai-mini-note">{tool.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Featured Operations / Projects -->
+    <section class="ark-operations-preview">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">SECTION // 03</span>
+        <h2 class="ark-header-title">FEATURED OPERATIONS</h2>
+        <div class="ark-hazard-line"></div>
+        <a href="/projects" class="ark-pill ark-pill-amber">VIEW ALL (8)</a>
+      </div>
+
+      <div class="ark-operations-grid">
+        {featuredProjects.slice(0, 4).map(project => (
+          <ProjectCard
+            title={project.data.title}
+            operationCode={project.data.operationCode}
+            tagline={project.data.tagline}
+            category={project.data.category}
+            techStack={project.data.techStack}
+            clearanceLevel={project.data.clearanceLevel}
+            slug={project.id}
+            coverImage={project.data.coverImage}
+            liveDemoUrl={project.data.liveDemoUrl}
+            downloadUrl={project.data.downloadUrl}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Quick Telemetry Strip -->
+    <section class="ark-telemetry-strip ark-chamfer-box">
+      <div class="ark-telemetry-col">
+        <span class="ark-telemetry-num">486</span>
+        <span class="ark-telemetry-label">OJT HOURS VERIFIED</span>
+      </div>
+      <div class="ark-telemetry-col">
+        <span class="ark-telemetry-num">4</span>
+        <span class="ark-telemetry-label">CISCO NETWORK CERTIFICATIONS</span>
+      </div>
+      <div class="ark-telemetry-col">
+        <span class="ark-telemetry-num">15</span>
+        <span class="ark-telemetry-label">SUBMITTED WEEKLY REPORTS</span>
+      </div>
+      <div class="ark-telemetry-col">
+        <span class="ark-telemetry-num">2</span>
+        <span class="ark-telemetry-label">GAMES ON ITCH.IO</span>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .ark-hero-section {
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 36px;
+    background: linear-gradient(135deg, rgba(20, 26, 34, 0.95), rgba(12, 16, 22, 0.95));
+  }
+
+  .ark-hero-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .ark-hero-name {
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--ark-text-bright);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .ark-hero-role {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--ark-amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .ark-hero-summary {
+    font-size: 0.95rem;
+    color: var(--ark-text-body);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 640px;
+  }
+
+  .ark-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .ark-hero-portrait-frame {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ark-portrait-wrapper {
+    width: 240px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--ark-border-mid);
+  }
+
+  .ark-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05);
+  }
+
+  .ark-portrait-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    background: rgba(8, 9, 12, 0.85);
+    border-top: 1px solid var(--ark-border-subtle);
+  }
+
+  .ark-portrait-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-amber);
+    letter-spacing: 0.1em;
+  }
+
+  /* AI Highlight Section */
+  .ark-ai-highlight-section {
+    padding: 32px;
+    margin-bottom: 48px;
+    border-color: var(--ark-cyan);
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.05) 0%, rgba(15, 19, 24, 0.95) 100%);
+  }
+
+  .ark-ai-banner-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .ark-ai-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ark-cyan);
+    background: var(--ark-cyan-dim);
+    border: 1px solid var(--ark-cyan);
+    padding: 3px 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .ark-ai-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .ark-ai-desc {
+    font-size: 0.88rem;
+    color: var(--ark-text-body);
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+
+  .ark-ai-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .ark-ai-mini-card {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 18px;
+    transition: var(--ark-transition);
+  }
+
+  .ark-ai-mini-card:hover {
+    border-color: var(--ark-cyan);
+    background: rgba(0, 229, 255, 0.04);
+  }
+
+  .ark-ai-mini-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .ark-ai-mini-header i {
+    font-size: 1.2rem;
+    color: var(--ark-cyan);
+  }
+
+  .ark-ai-mini-header h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+  }
+
+  .ark-ai-mini-note {
+    font-size: 0.8rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+  }
+
+  /* Operations Preview */
+  .ark-operations-preview {
+    margin-bottom: 48px;
+  }
+
+  .ark-operations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Telemetry Strip */
+  .ark-telemetry-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 24px;
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    text-align: center;
+  }
+
+  .ark-telemetry-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ark-telemetry-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--ark-amber);
+    line-height: 1;
+  }
+
+  .ark-telemetry-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 900px) {
+    .ark-hero-section {
+      grid-template-columns: 1fr;
+      padding: 32px 20px;
+    }
+
+    .ark-hero-name {
+      font-size: 2.5rem;
+    }
+
+    .ark-hero-portrait-frame {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ark-hero-section {
+      padding: 24px 16px;
+    }
+    .ark-hero-name {
+      font-size: 2rem;
+    }
+    .ark-hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
+    .ark-hero-cta a {
+      width: 100%;
+      text-align: center;
+    }
+    .ark-ai-highlight-section {
+      padding: 20px 16px;
+    }
+    .ark-portrait-wrapper {
+      width: 180px;
+      height: 220px;
+    }
+  }
+</style>

@@ -1,0 +1,212 @@
+---
+interface Props {
+  title: string;
+  operationCode: string;
+  tagline: string;
+  category: string;
+  techStack: string[];
+  clearanceLevel: string;
+  slug: string;
+  coverImage?: string;
+  liveDemoUrl?: string;
+  downloadUrl?: string;
+}
+
+const {
+  title,
+  operationCode,
+  tagline,
+  category,
+  techStack,
+  clearanceLevel,
+  slug,
+  coverImage,
+  liveDemoUrl,
+  downloadUrl
+} = Astro.props;
+---
+
+<div class="ark-project-card ark-chamfer-box ark-reticle ark-reveal">
+  <!-- Card Header -->
+  <div class="ark-project-header">
+    <div class="ark-code-row">
+      <span class="ark-pill ark-pill-yellow">{operationCode}</span>
+      <span class="ark-clearance-badge">{clearanceLevel}</span>
+    </div>
+    <h3 class="ark-project-title">
+      <a href={`/projects/${slug}`}>{title}</a>
+    </h3>
+    <span class="ark-project-category">{category}</span>
+  </div>
+
+  <!-- Project Thumbnail Image -->
+  {coverImage && (
+    <a href={`/projects/${slug}`} class="ark-project-thumb-link">
+      <div class="ark-project-thumb-frame">
+        {coverImage.endsWith('.mp4') ? (
+          <div class="ark-video-thumb-wrap">
+            <video src={`${coverImage}#t=0.5`} muted preload="metadata" class="ark-project-thumb-img"></video>
+            <div class="ark-video-play-badge"><i class="fa-solid fa-play"></i> VIDEO BRIEF</div>
+          </div>
+        ) : (
+          <img src={coverImage} alt={title} class="ark-project-thumb-img" loading="lazy" />
+        )}
+        <div class="ark-thumb-scanlines"></div>
+      </div>
+    </a>
+  )}
+
+  <p class="ark-project-tagline">{tagline}</p>
+
+  <div class="ark-tech-stack">
+    {techStack.map(tech => (
+      <span class="ark-pill">{tech}</span>
+    ))}
+  </div>
+
+  <div class="ark-project-actions">
+    <a href={`/projects/${slug}`} class="ark-btn-secondary ark-btn-sm">
+      <i class="fa-solid fa-file-waveform"></i> MISSION BRIEF
+    </a>
+    {liveDemoUrl && (
+      <a href={liveDemoUrl} target="_blank" rel="noopener noreferrer" class="ark-btn ark-btn-sm">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE DEMO
+      </a>
+    )}
+  </div>
+</div>
+
+<style>
+  .ark-project-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-project-header {
+    margin-bottom: 14px;
+  }
+
+  .ark-code-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .ark-clearance-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-project-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .ark-project-title a:hover {
+    color: var(--ark-yellow);
+  }
+
+  .ark-project-category {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .ark-project-thumb-link {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .ark-project-thumb-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--ark-bg-base);
+    border: 1px solid var(--ark-border-mid);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .ark-project-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .ark-project-card:hover .ark-project-thumb-img {
+    transform: scale(1.04);
+  }
+
+  .ark-thumb-scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 3px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .ark-video-thumb-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ark-video-play-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(10, 11, 14, 0.85);
+    border: 1px solid var(--ark-yellow);
+    color: var(--ark-yellow);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  .ark-project-tagline {
+    font-size: 0.85rem;
+    color: var(--ark-text-body);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+
+  .ark-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .ark-project-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .ark-btn-sm {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+</style>

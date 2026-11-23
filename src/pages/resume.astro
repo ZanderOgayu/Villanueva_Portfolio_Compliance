@@ -1,0 +1,538 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import educationData from '../data/education.json';
+import experienceData from '../data/experience.json';
+
+const ciscoCertificates = [
+  {
+    title: "Networking Basics",
+    issuer: "Cisco Networking Academy",
+    date: "April 17, 2025",
+    file: "/Certificates/NetworkingBasicsUpdate20260530-32-q28npq.pdf",
+    skills: ["Network Topologies", "Physical Media", "Network Access", "Ethernet Protocols"],
+    description: "Foundational verification in network architectures, OSI and TCP/IP models, transmission media, and basic network protocols."
+  },
+  {
+    title: "Network Addressing & Basic Troubleshooting",
+    issuer: "Cisco Networking Academy",
+    date: "April 20, 2025",
+    file: "/Certificates/NetworkAddressingandBasicTroubleshootingUpdate20260530-31-60j3te.pdf",
+    skills: ["IPv4/IPv6 Addressing", "Subnetting", "ICMP Diagnostics", "Ping & Traceroute"],
+    description: "Advanced subnetting, IPv4/IPv6 address planning, VLSM calculations, and diagnostics using ICMP, ping, and traceroute."
+  },
+  {
+    title: "Networking Devices & Basic Configuration",
+    issuer: "Cisco Networking Academy",
+    date: "April 19, 2025",
+    file: "/Certificates/NetworkingDevicesandBasicConfigUpdate20260530-32-ew9k93.pdf",
+    skills: ["Cisco IOS CLI", "Switch Configuration", "Router Interfaces", "VLANs"],
+    description: "Hands-on configuration of Cisco switches and routers via Cisco IOS CLI, securing administrative access, and configuring VLANs."
+  },
+  {
+    title: "Network Support & Security",
+    issuer: "Cisco Networking Academy",
+    date: "May 02, 2025",
+    file: "/Certificates/NetworkSupportandSecurityUpdate20260530-32-1nsbys.pdf",
+    skills: ["Network Security", "Access Control Lists", "Firewalls", "Threat Mitigation"],
+    description: "Enterprise endpoint protection, access control lists (ACLs), perimeter firewalls, and network threat mitigation strategies."
+  }
+];
+---
+
+<BaseLayout title="OFFICIAL DOSSIER // RESUME & CREDENTIALS">
+  <div class="container ark-resume-container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">CLEARANCE // VERIFIED</span>
+      <h1 class="ark-header-title">CURRICULUM VITAE & INSTITUTIONAL CREDENTIALS</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <!-- Official Documents Header -->
+    <div class="ark-resume-actions-bar ark-chamfer-box ark-reticle ark-reveal">
+      <div class="ark-rab-left">
+        <h2 class="ark-rab-title">OFFICIAL OPERATOR DOCUMENTS</h2>
+        <p class="ark-rab-desc">Verified academic curriculum vitae and industry resume artifacts.</p>
+      </div>
+      <div class="ark-rab-right">
+        <a href="/assets/ZANDER_VILLANUEVA_RESUME.pdf" download class="ark-btn">
+          <i class="fa-solid fa-file-pdf"></i> DOWNLOAD RESUME (PDF)
+        </a>
+        <a href="/assets/Curriculum Vitae.pdf" download class="ark-btn-secondary">
+          <i class="fa-solid fa-file-lines"></i> DOWNLOAD FULL CV (PDF)
+        </a>
+      </div>
+    </div>
+
+    <!-- Cisco Certifications Section (Preview Only, Zero Download Buttons) -->
+    <section class="ark-cert-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">CREDENTIALS // CISCO</span>
+        <h2 class="ark-header-title">CISCO NETWORKING ACADEMY CERTIFICATIONS</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-certs-grid">
+        {ciscoCertificates.map(cert => (
+          <div class="ark-cert-card ark-chamfer-box ark-reveal">
+            <div class="ark-cert-header">
+              <i class="fa-solid fa-certificate ark-cert-icon"></i>
+              <div>
+                <span class="ark-cert-issuer">{cert.issuer}</span>
+                <h3 class="ark-cert-name">{cert.title}</h3>
+              </div>
+            </div>
+
+            <div class="ark-cert-date">
+              <i class="fa-regular fa-calendar-check"></i> {cert.date}
+            </div>
+
+            <p class="ark-cert-desc">{cert.description}</p>
+
+            <div class="ark-cert-skills">
+              {cert.skills.map(s => (
+                <span class="ark-pill">{s}</span>
+              ))}
+            </div>
+
+            <div class="ark-cert-footer">
+              <button 
+                class="ark-btn-secondary ark-btn-sm js-cert-preview-btn"
+                data-cert-title={cert.title}
+                data-cert-issuer={cert.issuer}
+                data-cert-date={cert.date}
+                data-cert-file={cert.file}
+              >
+                <i class="fa-solid fa-eye"></i> PREVIEW CERTIFICATE
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="ark-resume-exp-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">HISTORY // DEPLOYMENTS</span>
+        <h2 class="ark-header-title">OPERATIONAL EXPERIENCE</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-timeline-list">
+        {experienceData.map(exp => (
+          <div class="ark-timeline-item ark-chamfer-box ark-reveal">
+            <div class="ark-timeline-top">
+              <span class="ark-pill ark-pill-yellow">{exp.period}</span>
+              <span class="ark-timeline-status">{exp.location}</span>
+            </div>
+            <h3 class="ark-timeline-institution">{exp.company}</h3>
+            <h4 class="ark-timeline-degree">{exp.role}</h4>
+            <p class="ark-exp-desc">{exp.description}</p>
+            <div class="ark-exp-skills">
+              {exp.skills_applied.map(s => (
+                <span class="ark-pill">{s}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section class="ark-resume-edu-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">HISTORY // ACADEMIC</span>
+        <h2 class="ark-header-title">EDUCATION & CREDENTIALS</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-timeline-list">
+        {educationData.map(edu => (
+          <div class="ark-timeline-item ark-chamfer-box ark-reveal">
+            <div class="ark-timeline-top">
+              <span class="ark-pill ark-pill-cyan">{edu.period}</span>
+              <span class="ark-timeline-status">{edu.status}</span>
+            </div>
+            <h3 class="ark-timeline-institution">{edu.institution}</h3>
+            <h4 class="ark-timeline-degree">{edu.degree}</h4>
+            <ul class="ark-timeline-highlights">
+              {edu.highlights.map(h => (
+                <li><i class="fa-solid fa-check"></i> {h}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- In-Page Certificate Tactical Preview Modal -->
+    <div class="ark-modal-backdrop" id="ark-cert-modal" aria-hidden="true">
+      <div class="ark-modal-dialog ark-chamfer-box ark-reticle">
+        <div class="ark-modal-header">
+          <div class="ark-modal-title-group">
+            <span class="ark-pill ark-pill-yellow">CISCO VERIFIED CREDENTIAL PREVIEW</span>
+            <h3 class="ark-modal-title" id="ark-cert-modal-title">Certificate Title</h3>
+          </div>
+          <button class="ark-modal-close" id="ark-cert-modal-close-btn" aria-label="Close preview">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="ark-modal-meta-box">
+          <span class="ark-cert-meta-info" id="ark-cert-modal-meta">Issuer & Date</span>
+        </div>
+
+        <div class="ark-modal-frame-wrapper">
+          <iframe id="ark-cert-iframe" src="" class="ark-modal-iframe" title="Certificate Document Preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const certModal = document.getElementById('ark-cert-modal');
+  const certCloseBtn = document.getElementById('ark-cert-modal-close-btn');
+  const certModalTitle = document.getElementById('ark-cert-modal-title');
+  const certModalMeta = document.getElementById('ark-cert-modal-meta');
+  const certIframe = document.getElementById('ark-cert-iframe') as HTMLIFrameElement;
+  const certBtns = document.querySelectorAll('.js-cert-preview-btn');
+
+  function openCertPreview(title: string, issuer: string, date: string, file: string) {
+    if (!certModal) return;
+    if (certModalTitle) certModalTitle.textContent = title;
+    if (certModalMeta) certModalMeta.textContent = `${issuer} // Verified on ${date}`;
+    if (certIframe) certIframe.src = file;
+    certModal.classList.add('active');
+    certModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCertPreview() {
+    if (!certModal) return;
+    certModal.classList.remove('active');
+    certModal.setAttribute('aria-hidden', 'true');
+    if (certIframe) certIframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  certBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const title = btn.getAttribute('data-cert-title') || 'Certificate';
+      const issuer = btn.getAttribute('data-cert-issuer') || 'Cisco';
+      const date = btn.getAttribute('data-cert-date') || '';
+      const file = btn.getAttribute('data-cert-file') || '';
+      openCertPreview(title, issuer, date, file);
+    });
+  });
+
+  certCloseBtn?.addEventListener('click', closeCertPreview);
+
+  certModal?.addEventListener('click', (e) => {
+    if (e.target === certModal) closeCertPreview();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && certModal?.classList.contains('active')) {
+      closeCertPreview();
+    }
+  });
+</script>
+
+<style>
+  .ark-resume-actions-bar {
+    padding: 28px 36px;
+    background: var(--ark-bg-card);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .ark-rab-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .ark-rab-desc {
+    font-size: 0.88rem;
+    color: var(--ark-text-body);
+  }
+
+  .ark-rab-right {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Certifications */
+  .ark-cert-section {
+    margin-bottom: 48px;
+  }
+
+  .ark-certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .ark-cert-card {
+    padding: 24px;
+    background: var(--ark-bg-card);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ark-border-mid);
+    transition: var(--ark-transition);
+  }
+
+  .ark-cert-card:hover {
+    border-color: var(--ark-yellow);
+    transform: translateY(-2px);
+  }
+
+  .ark-cert-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .ark-cert-icon {
+    font-size: 1.8rem;
+    color: var(--ark-yellow);
+    margin-top: 2px;
+  }
+
+  .ark-cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ark-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+  }
+
+  .ark-cert-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    line-height: 1.25;
+  }
+
+  .ark-cert-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ark-text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ark-cert-desc {
+    font-size: 0.82rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+
+  .ark-cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .ark-cert-footer {
+    margin-top: auto;
+  }
+
+  .ark-btn-sm {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Timelines */
+  .ark-resume-exp-section, .ark-resume-edu-section {
+    margin-bottom: 48px;
+  }
+
+  .ark-timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ark-timeline-item {
+    padding: 24px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-timeline-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ark-timeline-status {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-timeline-institution {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 2px;
+  }
+
+  .ark-timeline-degree {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--ark-yellow);
+    margin-bottom: 6px;
+  }
+
+  .ark-exp-desc {
+    font-size: 0.88rem;
+    color: var(--ark-text-body);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .ark-exp-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ark-timeline-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .ark-timeline-highlights li {
+    font-size: 0.85rem;
+    color: var(--ark-text-body);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .ark-timeline-highlights li i {
+    color: var(--ark-yellow);
+    margin-top: 4px;
+    font-size: 0.75rem;
+  }
+
+  /* Tactical Modal */
+  .ark-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 14, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .ark-modal-backdrop.active {
+    display: flex;
+  }
+
+  .ark-modal-dialog {
+    width: 100%;
+    max-width: 960px;
+    max-height: 90vh;
+    background: var(--ark-bg-card);
+    border: 2px solid var(--ark-yellow);
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    box-shadow: 0 0 40px var(--ark-yellow-glow);
+  }
+
+  .ark-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .ark-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .ark-modal-close {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    color: var(--ark-text-bright);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--ark-transition);
+  }
+
+  .ark-modal-close:hover {
+    background: var(--ark-hazard-red);
+    border-color: var(--ark-hazard-red);
+  }
+
+  .ark-modal-meta-box {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 10px 16px;
+    margin-bottom: 16px;
+  }
+
+  .ark-cert-meta-info {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ark-yellow);
+    letter-spacing: 0.05em;
+  }
+
+  .ark-modal-frame-wrapper {
+    flex: 1;
+    height: 60vh;
+    border: 1px solid var(--ark-border-mid);
+    background: #000;
+  }
+
+  .ark-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  @media (max-width: 900px) {
+    .ark-modal-dialog {
+      padding: 16px;
+    }
+  }
+</style>

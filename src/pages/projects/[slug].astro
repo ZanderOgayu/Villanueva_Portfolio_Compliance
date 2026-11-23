@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.id },
+    props: { project }
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={`${project.data.operationCode} // ${project.data.title}`}>
+  <div class="container ark-case-study-container">
+    <!-- Top Return Action Bar -->
+    <div class="ark-back-bar">
+      <a href="/projects" class="ark-btn-secondary ark-back-btn">
+        <i class="fa-solid fa-arrow-left"></i> BACK TO OPERATIONS ARCHIVE
+      </a>
+      <span class="ark-pill ark-pill-yellow">{project.data.operationCode}</span>
+    </div>
+
+    <!-- Case Study Header Panel -->
+    <div class="ark-study-header ark-chamfer-box ark-reticle ark-reveal">
+      <span class="ark-study-category">{project.data.category}</span>
+      <h1 class="ark-study-title">{project.data.title}</h1>
+      <p class="ark-study-tagline">{project.data.tagline}</p>
+
+      <!-- Primary Media / Screenshots Frame -->
+      {project.data.coverImage && (
+        <div class="ark-media-preview-box">
+          {project.data.coverImage.endsWith('.mp4') ? (
+            <video src={project.data.coverImage} controls class="ark-study-video"></video>
+          ) : (
+            <img src={project.data.coverImage} alt={project.data.title} class="ark-study-img" />
+          )}
+          <div class="ark-media-overlay-tag">
+            <span>TACTICAL ARTIFACT RECORD // {project.data.operationCode}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- Meta Grid -->
+      <div class="ark-study-meta-grid">
+        <div class="ark-meta-col">
+          <span class="ark-meta-label">CLEARANCE PROTOCOL</span>
+          <span class="ark-meta-val">{project.data.clearanceLevel}</span>
+        </div>
+        <div class="ark-meta-col">
+          <span class="ark-meta-label">TECH STACK / ARTIFACTS</span>
+          <div class="ark-meta-pills">
+            {project.data.techStack.map(t => (
+              <span class="ark-pill">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="ark-study-actions">
+        {project.data.liveDemoUrl && (
+          <a href={project.data.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="ark-btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> LAUNCH LIVE APPLICATION
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Main Case Study Content -->
+    <article class="ark-study-body ark-chamfer-box">
+      <Content />
+
+      <!-- Bottom Return Button -->
+      <div class="ark-bottom-nav">
+        <a href="/projects" class="ark-btn-secondary ark-back-btn">
+          <i class="fa-solid fa-arrow-left"></i> BACK TO OPERATIONS ARCHIVE
+        </a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .ark-case-study-container {
+    max-width: 920px;
+  }
+
+  .ark-back-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .ark-back-btn {
+    padding: 12px 22px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-color: var(--ark-yellow);
+    color: var(--ark-yellow);
+    background: var(--ark-bg-surface);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--ark-transition);
+  }
+
+  .ark-back-btn:hover {
+    background: var(--ark-yellow);
+    color: var(--ark-bg-base);
+    box-shadow: 0 0 20px var(--ark-yellow-glow);
+    transform: translateX(-4px);
+  }
+
+  .ark-study-header {
+    padding: 36px;
+    margin-bottom: 32px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-study-category {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ark-cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .ark-study-title {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .ark-study-tagline {
+    font-size: 1.05rem;
+    color: var(--ark-text-body);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .ark-media-preview-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 28px;
+    border: 1px solid var(--ark-border-mid);
+    background: var(--ark-bg-base);
+    overflow: hidden;
+  }
+
+  .ark-study-img, .ark-study-video {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    display: block;
+    background: #000;
+  }
+
+  .ark-media-overlay-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 11, 14, 0.85);
+    border-top: 1px solid var(--ark-border-subtle);
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-yellow);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-study-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 18px 0;
+    border-top: 1px solid var(--ark-border-subtle);
+    border-bottom: 1px solid var(--ark-border-subtle);
+    margin-bottom: 24px;
+  }
+
+  .ark-meta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ark-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ark-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-meta-val {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ark-yellow);
+  }
+
+  .ark-meta-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ark-study-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ark-study-body {
+    padding: 40px;
+    background: var(--ark-bg-card);
+    line-height: 1.8;
+    color: var(--ark-text-body);
+    font-size: 0.95rem;
+  }
+
+  .ark-study-body :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ark-border-subtle);
+    text-transform: uppercase;
+  }
+
+  .ark-study-body :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ark-yellow);
+    margin: 24px 0 12px;
+  }
+
+  .ark-study-body :global(p) {
+    margin-bottom: 18px;
+  }
+
+  .ark-study-body :global(ul) {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .ark-study-body :global(li) {
+    margin-bottom: 8px;
+  }
+
+  .ark-study-body :global(pre) {
+    background: var(--ark-bg-base);
+    border: 1px solid var(--ark-border-mid);
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ark-text-bright);
+    overflow-x: auto;
+    margin: 20px 0;
+  }
+
+  .ark-study-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--ark-border-mid);
+    background: #000;
+    margin: 20px 0 8px;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .ark-study-body :global(em) {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ark-text-muted);
+    margin-bottom: 24px;
+    font-style: normal;
+  }
+
+  .ark-bottom-nav {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ark-border-subtle);
+  }
+</style>

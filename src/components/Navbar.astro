@@ -1,0 +1,265 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { label: "COMMAND", path: "/", code: "00" },
+  { label: "ABOUT", path: "/about", code: "01" },
+  { label: "SKILLS", path: "/skills", code: "02" },
+  { label: "OPERATIONS", path: "/projects", code: "03" },
+  { label: "OJT LOGS", path: "/ojt", code: "04" },
+  { label: "RESUME", path: "/resume", code: "05" },
+  { label: "TRANSMIT", path: "/contact", code: "06" }
+];
+---
+
+<header class="ark-navbar">
+  <div class="container ark-navbar-container">
+    <!-- Brand / System Node -->
+    <a href="/" class="ark-brand">
+      <span class="ark-brand-icon">◈</span>
+      <div class="ark-brand-text">
+        <span class="ark-brand-name">ZANDER.VILLANUEVA</span>
+        <span class="ark-brand-sub">SYS_ID: OP-4921 // CENTRAL-CORE</span>
+      </div>
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="ark-nav-links" id="ark-nav-links">
+      {navItems.map(item => {
+        const isActive = (item.path === '/' && currentPath === '/') || 
+                         (item.path !== '/' && currentPath.startsWith(item.path));
+        return (
+          <a href={item.path} class={`ark-nav-item ${isActive ? 'active' : ''}`}>
+            <span class="ark-nav-code">{item.code}</span>
+            <span class="ark-nav-label">{item.label}</span>
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Right Controls: Status & Mobile Toggle -->
+    <div class="ark-navbar-actions">
+      <div class="ark-telemetry-badge" title="Tactical Telemetry Online">
+        <span class="ark-status-dot"></span>
+        <div class="ark-equalizer" aria-hidden="true">
+          <span class="ark-eq-bar"></span>
+          <span class="ark-eq-bar"></span>
+          <span class="ark-eq-bar"></span>
+          <span class="ark-eq-bar"></span>
+        </div>
+        <span class="ark-telemetry-text">SYS.ONLINE</span>
+      </div>
+      <button class="ark-hamburger" id="ark-hamburger" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const hamburger = document.getElementById('ark-hamburger');
+  const navLinks = document.getElementById('ark-nav-links');
+
+  hamburger?.addEventListener('click', () => {
+    navLinks?.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  });
+</script>
+
+<style>
+  .ark-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--ark-bg-glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 2px solid var(--ark-border-mid);
+    padding: 12px 0;
+  }
+
+  .ark-navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ark-yellow), transparent 40%, transparent 60%, var(--ark-cyan));
+    pointer-events: none;
+  }
+
+  .ark-navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ark-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ark-brand-icon {
+    font-size: 1.4rem;
+    color: var(--ark-yellow);
+    animation: ark-pulse 3s infinite;
+  }
+
+  .ark-brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ark-brand-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--ark-text-bright);
+    line-height: 1.1;
+  }
+
+  .ark-brand-sub {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-yellow);
+    letter-spacing: 0.12em;
+  }
+
+  .ark-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ark-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    transition: var(--ark-transition);
+  }
+
+  .ark-nav-code {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-nav-label {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ark-text-body);
+  }
+
+  .ark-nav-item:hover {
+    color: var(--ark-yellow);
+    background: var(--ark-yellow-dim);
+    border-color: rgba(255, 230, 0, 0.25);
+  }
+
+  .ark-nav-item:hover .ark-nav-label {
+    color: var(--ark-yellow);
+  }
+
+  .ark-nav-item.active {
+    background: var(--ark-bg-card);
+    border: 1px solid var(--ark-yellow);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+  }
+
+  .ark-nav-item.active .ark-nav-code {
+    color: var(--ark-yellow);
+  }
+
+  .ark-nav-item.active .ark-nav-label {
+    color: var(--ark-text-bright);
+  }
+
+  .ark-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ark-telemetry-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    background: rgba(0, 230, 153, 0.08);
+    border: 1px solid rgba(0, 230, 153, 0.3);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ark-success-green);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px;
+    cursor: pointer;
+  }
+
+  .ark-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ark-yellow);
+    transition: var(--ark-transition);
+  }
+
+  @media (max-width: 900px) {
+    .ark-hamburger {
+      display: flex;
+    }
+
+    .ark-nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--ark-bg-surface);
+      border-bottom: 3px solid var(--ark-yellow);
+      flex-direction: column;
+      padding: 16px;
+      gap: 8px;
+      z-index: 9999;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+
+    .ark-nav-links.open {
+      display: flex;
+    }
+
+    .ark-nav-item {
+      width: 100%;
+      padding: 12px 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ark-brand-sub {
+      display: none;
+    }
+    .ark-brand-name {
+      font-size: 1.1rem;
+    }
+    .ark-telemetry-badge {
+      display: none;
+    }
+  }
+</style>

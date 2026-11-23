@@ -1,0 +1,233 @@
+[
+  {
+    "category_id": "languages",
+    "category_name": "Programming Languages",
+    "badge_code": "LANG // 01",
+    "description": "Core software engineering and scripting languages",
+    "skills": [
+      {
+        "name": "JavaScript (ES6+)",
+        "icon": "devicon-javascript-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Modern DOM manipulation, async APIs, event-driven programming, modular architecture"
+      },
+      {
+        "name": "Python 3",
+        "icon": "devicon-python-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Cryptographic cipher development (VortexShift), machine learning pipelines, automation scripting"
+      },
+      {
+        "name": "Java",
+        "icon": "devicon-java-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Object-oriented design patterns, game logic development (Brink / Melancholy), data structures"
+      },
+      {
+        "name": "C#",
+        "icon": "devicon-csharp-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Unity gameplay programming, component architecture, state machines"
+      },
+      {
+        "name": "C++",
+        "icon": "devicon-cplusplus-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Low-level memory management, algorithms, computational performance"
+      },
+      {
+        "name": "HTML5 & Modern CSS3",
+        "icon": "devicon-html5-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Semantic layout, responsive Grid & Flexbox, CSS Custom Properties, animations"
+      }
+    ]
+  },
+  {
+    "category_id": "frontend",
+    "category_name": "Frontend & UI/UX Design",
+    "badge_code": "UI // 02",
+    "description": "Visual design, prototyping, and modern web interfaces",
+    "skills": [
+      {
+        "name": "Responsive Web Design",
+        "icon": "fa-solid fa-laptop-code",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Mobile-first layouts, cross-browser compatibility, touch responsiveness"
+      },
+      {
+        "name": "Figma",
+        "icon": "devicon-figma-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Wireframing, interactive UI prototyping, typography scales, design systems"
+      },
+      {
+        "name": "Adobe Photoshop",
+        "icon": "devicon-photoshop-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Graphic composition, smart object layering, grunge poster aesthetics, asset production"
+      },
+      {
+        "name": "Canva",
+        "icon": "devicon-canva-original colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Rapid pitch deck design, concept documentation presentations (MyHomeVault)"
+      }
+    ]
+  },
+  {
+    "category_id": "backend",
+    "category_name": "Backend & Architecture",
+    "badge_code": "SYS // 03",
+    "description": "Server runtimes, application logic, and systems engineering",
+    "skills": [
+      {
+        "name": "Node.js",
+        "icon": "devicon-nodejs-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Backend JavaScript runtime, RESTful endpoints, package ecosystem, CLI utilities"
+      },
+      {
+        "name": "OOP Architecture",
+        "icon": "fa-solid fa-cubes",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Encapsulation, inheritance, polymorphism, clean modular design across Java & C#"
+      }
+    ]
+  },
+  {
+    "category_id": "databases",
+    "category_name": "Databases & Storage",
+    "badge_code": "DB // 04",
+    "description": "Relational data modeling, querying, and storage architecture",
+    "skills": [
+      {
+        "name": "MySQL",
+        "icon": "devicon-mysql-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Relational schema design, SQL querying, foreign keys, normalization, data integrity"
+      }
+    ]
+  },
+  {
+    "category_id": "networking",
+    "category_name": "Networking & Infrastructure",
+    "badge_code": "NET // 05",
+    "description": "Cisco enterprise routing, switching, subnetting, and diagnostics",
+    "skills": [
+      {
+        "name": "Cisco Packet Tracer",
+        "icon": "fa-solid fa-network-wired",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Network topology simulation, multi-router subnetting, switch VLAN configuration"
+      },
+      {
+        "name": "Network Addressing & Subnetting",
+        "icon": "fa-solid fa-diagram-project",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "IPv4/IPv6 allocation, VLSM, CIDR prefix design, DHCP pool configuration"
+      },
+      {
+        "name": "Network Security & Troubleshooting",
+        "icon": "fa-solid fa-shield-halved",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "ACLs, firewall diagnostics, basic penetration countermeasures (Cisco Certified)"
+      },
+      {
+        "name": "Ubuntu Linux Administration",
+        "icon": "devicon-ubuntu-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Server package storage, shell scripting, user privilege management, CLI diagnostics"
+      }
+    ]
+  },
+  {
+    "category_id": "ai_tools",
+    "category_name": "AI Tools & Workflow Acceleration",
+    "badge_code": "AI // 06",
+    "description": "Autonomous engineering agents, architectural reasoning, and development speedup",
+    "skills": [
+      {
+        "name": "Google Antigravity",
+        "icon": "fa-solid fa-microchip",
+        "proficiency": "Advanced",
+        "tier": 6,
+        "note": "Autonomous agentic coding, multi-agent workspace automation, architectural orchestration"
+      },
+      {
+        "name": "Anthropic Claude",
+        "icon": "fa-solid fa-brain",
+        "proficiency": "Advanced",
+        "tier": 6,
+        "note": "Deep architectural reasoning, complex refactoring, cryptographic analysis, documentation synthesis"
+      },
+      {
+        "name": "Google Gemini",
+        "icon": "fa-solid fa-wand-magic-sparkles",
+        "proficiency": "Advanced",
+        "tier": 6,
+        "note": "Multimodal research, rapid API exploration, design iteration, algorithm debugging"
+      }
+    ]
+  },
+  {
+    "category_id": "tools_workflow",
+    "category_name": "Tools & Workflow",
+    "badge_code": "TOOL // 07",
+    "description": "Version control, IDE environments, game engines, and documentation",
+    "skills": [
+      {
+        "name": "Git & GitHub",
+        "icon": "devicon-git-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Branching strategies, commit hygiene, pull requests, repository maintenance"
+      },
+      {
+        "name": "Unity Engine",
+        "icon": "devicon-unity-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Game mechanics, 2D/3D physics, build compilation for itch.io releases"
+      },
+      {
+        "name": "VS Code",
+        "icon": "devicon-vscode-plain colored",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Integrated development, terminal workflows, debugger configurations"
+      },
+      {
+        "name": "Jira",
+        "icon": "devicon-jira-plain colored",
+        "proficiency": "Intermediate",
+        "tier": 4,
+        "note": "Agile sprint tracking, task breakdown, issue lifecycles"
+      },
+      {
+        "name": "Microsoft 365",
+        "icon": "fa-solid fa-file-lines",
+        "proficiency": "Advanced",
+        "tier": 5,
+        "note": "Technical reports (Word), quantitative data (Excel), concept decks (PowerPoint)"
+      }
+    ]
+  }
+]

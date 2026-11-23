@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const ojtList = await getCollection('ojt');
+  return ojtList.map(report => ({
+    params: { slug: report.id },
+    props: { report }
+  }));
+}
+
+interface Props {
+  report: CollectionEntry<'ojt'>;
+}
+
+const { report } = Astro.props;
+const { Content } = await render(report);
+---
+
+<BaseLayout title={`${report.data.company} // FIELD OJT REPORT`}>
+  <div class="container ark-ojt-detail-container">
+    <div class="ark-ojt-detail-header ark-chamfer-box ark-reticle">
+      <div class="ark-ojt-nav">
+        <a href="/ojt" class="ark-back-link">
+          <i class="fa-solid fa-arrow-left"></i> RETURN TO OJT INDEX
+        </a>
+        <span class="ark-pill ark-pill-amber">VERIFIED: {report.data.hoursTotal} OPERATIONAL HOURS</span>
+      </div>
+
+      <h1 class="ark-ojt-detail-title">{report.data.title}</h1>
+      <div class="ark-ojt-detail-meta">
+        <span class="ark-meta-company">{report.data.company}</span>
+        <span class="ark-meta-role">[{report.data.role}]</span>
+        <span class="ark-meta-period">{report.data.period}</span>
+      </div>
+
+      {report.data.metrics && (
+        <div class="ark-detail-metrics-grid">
+          {report.data.metrics.map(m => (
+            <div class="ark-detail-metric">
+              <span class="ark-dm-val">{m.value}</span>
+              <span class="ark-dm-lbl">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="ark-detail-actions">
+        <a href="/ojt" class="ark-btn">
+          <i class="fa-solid fa-eye"></i> OPEN 15-WEEK INTERACTIVE REPORT PREVIEWS
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Report Prose -->
+    <article class="ark-ojt-prose ark-chamfer-box">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .ark-ojt-detail-container {
+    max-width: 920px;
+  }
+
+  .ark-ojt-detail-header {
+    padding: 36px;
+    margin-bottom: 32px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-ojt-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .ark-back-link {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-back-link:hover {
+    color: var(--ark-amber);
+  }
+
+  .ark-ojt-detail-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .ark-ojt-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .ark-meta-company {
+    color: var(--ark-amber);
+    font-weight: 700;
+  }
+
+  .ark-meta-role {
+    color: var(--ark-cyan);
+  }
+
+  .ark-meta-period {
+    color: var(--ark-text-muted);
+  }
+
+  .ark-detail-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    padding: 18px;
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    margin-bottom: 24px;
+  }
+
+  .ark-detail-metric {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ark-dm-val {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-amber);
+    line-height: 1.1;
+  }
+
+  .ark-dm-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ark-text-muted);
+    text-transform: uppercase;
+  }
+
+  .ark-detail-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ark-ojt-prose {
+    padding: 40px;
+    background: var(--ark-bg-card);
+    line-height: 1.8;
+    color: var(--ark-text-body);
+    font-size: 0.95rem;
+  }
+
+  .ark-ojt-prose :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ark-border-subtle);
+    text-transform: uppercase;
+  }
+
+  .ark-ojt-prose :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ark-amber);
+    margin: 24px 0 12px;
+  }
+
+  .ark-ojt-prose :global(p) {
+    margin-bottom: 18px;
+  }
+
+  .ark-ojt-prose :global(ul) {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .ark-ojt-prose :global(li) {
+    margin-bottom: 8px;
+  }
+</style>

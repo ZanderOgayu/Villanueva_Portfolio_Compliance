@@ -1,0 +1,185 @@
+---
+interface Skill {
+  name: string;
+  icon: string;
+  note: string;
+}
+
+interface Props {
+  categoryName: string;
+  badgeCode: string;
+  description: string;
+  skills: Skill[];
+  isAiTools?: boolean;
+}
+
+const { categoryName, badgeCode, description, skills, isAiTools = false } = Astro.props;
+---
+
+<div class={`ark-skill-category-card ark-chamfer-box ark-reticle ${isAiTools ? 'ai-highlight' : ''}`}>
+  <div class="ark-card-header">
+    <div class="ark-card-header-main">
+      <span class="ark-category-badge">{badgeCode}</span>
+      <h3 class="ark-category-title">{categoryName}</h3>
+    </div>
+    {isAiTools && (
+      <span class="ark-ai-tag">
+        <i class="fa-solid fa-microchip"></i> COGNITIVE ACCELERATION
+      </span>
+    )}
+  </div>
+  <p class="ark-category-desc">{description}</p>
+
+  <div class="ark-skills-grid">
+    {skills.map(skill => (
+      <div class="ark-skill-item">
+        <div class="ark-skill-item-top">
+          <div class="ark-skill-icon-wrap">
+            {skill.icon.startsWith('assets/') || skill.icon.startsWith('/') ? (
+              <img src={skill.icon} alt={skill.name} class="ark-skill-img-icon" />
+            ) : (
+              <i class={skill.icon}></i>
+            )}
+          </div>
+          <div class="ark-skill-meta">
+            <h4 class="ark-skill-name">{skill.name}</h4>
+          </div>
+        </div>
+        <p class="ark-skill-note">{skill.note}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ark-skill-category-card {
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .ark-skill-category-card.ai-highlight {
+    border-color: var(--ark-cyan);
+    box-shadow: 0 0 24px var(--ark-cyan-glow);
+  }
+
+  .ark-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ark-card-header-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ark-category-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-bg-base);
+    background: var(--ark-yellow);
+    padding: 2px 8px;
+    font-weight: 700;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 0 100%);
+  }
+
+  .ai-highlight .ark-category-badge {
+    color: var(--ark-bg-base);
+    background: var(--ark-cyan);
+  }
+
+  .ark-category-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--ark-text-bright);
+    text-transform: uppercase;
+  }
+
+  .ark-ai-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-cyan);
+    background: var(--ark-cyan-dim);
+    border: 1px solid var(--ark-cyan);
+    padding: 3px 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .ark-category-desc {
+    font-size: 0.85rem;
+    color: var(--ark-text-muted);
+    margin-bottom: 20px;
+  }
+
+  .ark-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .ark-skill-item {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 16px;
+    transition: var(--ark-transition);
+  }
+
+  .ark-skill-item:hover {
+    border-color: var(--ark-yellow);
+    background: rgba(255, 230, 0, 0.03);
+    transform: translateY(-2px);
+  }
+
+  .ai-highlight .ark-skill-item:hover {
+    border-color: var(--ark-cyan);
+    background: rgba(0, 240, 255, 0.03);
+  }
+
+  .ark-skill-item-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .ark-skill-icon-wrap {
+    font-size: 1.8rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ark-skill-img-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .ark-skill-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ark-skill-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    letter-spacing: 0.02em;
+  }
+
+  .ark-skill-note {
+    font-size: 0.82rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+  }
+</style>

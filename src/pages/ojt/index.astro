@@ -1,0 +1,814 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const ojtReports = await getCollection('ojt');
+ojtReports.sort((a, b) => a.data.order - b.data.order);
+
+const weeklyReports = [
+  { 
+    week: "1st Week", 
+    dates: "July 13 – 18, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 1ST WEEK (JULY 13-18 2026).pdf",
+    description: "Orientation at IT&DS Office and campus building survey. Tasked with replacing faulty display units in the Registrar, setting up local LAN network printers, performing printhead maintenance, and conducting simultaneous stress tests (FurMark, Cinebench, HWInfo) on refurbished Intel Core i5 systems."
+  },
+  { 
+    week: "2nd Week", 
+    dates: "July 20 – 25, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 2ND WEEK (JULY 20-25, 2026).pdf",
+    description: "Guidance Office workstation recovery: diagnosed and reformatted systems suffering from OS corruption via command-line boot utilities. Resolved local network printer sharing bugs and executed Windows 11 to Windows 10 rollbacks to preserve legacy printer driver compatibility."
+  },
+  { 
+    week: "3rd Week", 
+    dates: "July 27 – August 1, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 3RD WEEK (JULY 27 - AUGUST 1).pdf",
+    description: "OLFU campus enrollment infrastructure setup: deployed and networked workstations across PJP Building (2nd Floor) and Medical Building (9th Floor). Configured network cabling, switch connections, and validated terminal access for enrollment staff across 5 dedicated rooms."
+  },
+  { 
+    week: "4th Week", 
+    dates: "August 3 – 8, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 4TH WEEK (AUG 3-8).pdf",
+    description: "Hardware replacement and maintenance in Registrar Extension. Replaced unstable workstations experiencing monitor flickering and severe latency. Conducted internal hardware cleaning, cable re-routing, and system diagnostics."
+  },
+  { 
+    week: "5th Week", 
+    dates: "August 10 – 15, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 5TH WEEK (AUGUST 10-15)).pdf",
+    description: "Network printer connectivity troubleshooting across university departments. Resolved IP address conflicts, re-configured shared print queues, and dismantled malfunctioning ink cartridges for manual ultrasonic head cleaning."
+  },
+  { 
+    week: "6th Week", 
+    dates: "August 17 – 22, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 6TH WEEK (AUGUST 17-22).pdf",
+    description: "Thermal diagnostics and hardware repair in Registrar. Disassembled overheating desktop towers triggering thermal shutdowns, replaced dried thermal compound, cleaned heatsink fins, and resolved continuous BSOD automatic repair loops."
+  },
+  { 
+    week: "7th Week", 
+    dates: "August 24 – 29, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 7TH WEEK (AUGUST 24-29).pdf",
+    description: "Deployed and configured high-volume Canon network printing systems for the CPO Unit in the CAS Building. Fabricated and crimped custom Cat6 Ethernet patch cables and verified switch port throughput."
+  },
+  { 
+    week: "8th Week", 
+    dates: "August 31 – September 5, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 8TH WEEK (AUGUST 31-SEPTEMBER 5).pdf",
+    description: "Core network rack and data cabinet overhaul. Replaced critical enterprise Automatic Voltage Regulators (AVR) powering departmental switches and patch panels, ensuring uninterrupted power delivery and clean cable dressing."
+  },
+  { 
+    week: "9th Week", 
+    dates: "September 7 – 12, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 9TH WEEK (SEPTEMBER 7-12 ).pdf",
+    description: "Multi-campus IT logistics to Rise Tower (Dambana of Fatima). Transported and installed faculty workstations, configured conference room audio-visual systems, and provided live technical assistance for administrative Zoom sessions."
+  },
+  { 
+    week: "10th Week", 
+    dates: "September 14 – 19, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 10TH WEEK (SEPTEMBER 14-19 ).pdf",
+    description: "Network hardware transmittal and deployment. Managed logistics and structured installation of new network switches for Rise Tower expansion; documented MAC address tables and switch rack port maps."
+  },
+  { 
+    week: "11th Week", 
+    dates: "September 21 – 26, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 11TH WEEK (SEPTEMBER 21-26)).pdf",
+    description: "Preventative Maintenance (PM) protocol across Main Building computer laboratories. Audited hardware configurations, verified memory modules, ran disk defragmentation/trim utilities, and applied software security updates."
+  },
+  { 
+    week: "12th Week", 
+    dates: "September 28 – October 3, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 12TH WEEK (SEPTEMBER 28- OCTOBER 3).pdf",
+    description: "Extensive printer mechanical teardown in Central Placement Office (CAS Building). Cleared internal roller paper jams, inspected gear teeth integrity, aligned feed trays, and verified print resolution."
+  },
+  { 
+    week: "13th Week", 
+    dates: "October 5 – 10, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 13TH WEEK (OCTOBER 5 - 10).pdf",
+    description: "PJP Building 3rd floor network switch troubleshooting. Isolated intermittent power dropouts caused by a failing power supply, hot-swapped backup AVR hardware, and restored uninterrupted network connectivity to all floor endpoints."
+  },
+  { 
+    week: "14th Week", 
+    dates: "October 12 – 17, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 14TH WEEK (OCTOBER 12-17).pdf",
+    description: "Campus infrastructure support and emergency alert signage production. Supported IT&DS departmental documentation and audited network wall jacks across administrative offices."
+  },
+  { 
+    week: "15th Week", 
+    dates: "October 19 – 23, 2026", 
+    file: "/OJT/VILLANUEVA WEEKLY REPORT 15TH WEEK (OCTOBER 19-23).pdf",
+    description: "Final operational week and laboratory restoration in PJP Funda Lab. Flushed and revived dried printer nozzles using manual syringe fluid pressure, audited final tool inventory, and completed verified submission of all DTR logs (486 verified hours)."
+  }
+];
+
+const photoLogs = [
+  {
+    title: "Core Workstation Diagnostics & Benchmarking",
+    week: "WEEK 01",
+    dates: "July 13 – 18, 2026",
+    image: "/OJT/OJT_Images/1st week (July 13-18)/617e519a-7276-4cab-a389-0ab17cbb32f2.jfif",
+    caption: "Simultaneous thermal stress tests (FurMark & Cinebench) and hardware audit on desktop units."
+  },
+  {
+    title: "Guidance Office OS Recovery & Deployment",
+    week: "WEEK 02",
+    dates: "July 20 – 25, 2026",
+    image: "/OJT/OJT_Images/2nd week (July 20-25)/1059598f-756d-4191-8d97-446bdc85a5b3.jfif",
+    caption: "Command-line system recovery and legacy network printer driver rollback."
+  },
+  {
+    title: "Campus Enrollment LAN Infrastructure",
+    week: "WEEK 03",
+    dates: "July 27 – Aug 1, 2026",
+    image: "/OJT/OJT_Images/3rd week (July 27-Aug 1)/1feebecc-6d1e-4a8e-938b-fee72b32af65.jfif",
+    caption: "Structured Cat6 cabling and multi-room workstation deployment in PJP & Medical Buildings."
+  },
+  {
+    title: "Registrar Hardware Overhaul & Servicing",
+    week: "WEEK 04",
+    dates: "Aug 3 – 8, 2026",
+    image: "/OJT/OJT_Images/4th week (Aug 3-8)/1b4c809c-5369-4a8e-a0f8-6d6911bd9512.jfif",
+    caption: "Disassembly and hardware replacement for flickering and latency-impacted workstations."
+  },
+  {
+    title: "Thermal Paste Replacement & Heatsink Servicing",
+    week: "WEEK 06",
+    dates: "Aug 17 – 22, 2026",
+    image: "/OJT/OJT_Images/6th week (Aug 17-22)/03584297-d764-43f9-83c8-3a30620207d4.jfif",
+    caption: "Disassembling thermal-throttling desktop towers and resolving BSOD reboot loops."
+  },
+  {
+    title: "Canon High-Volume Printer Integration",
+    week: "WEEK 07",
+    dates: "Aug 24 – 29, 2026",
+    image: "/OJT/OJT_Images/7th Week (Aug 24-29)/1ae48035-121e-4ee8-bf4e-5a18e25bbc30.jfif",
+    caption: "Custom Cat6 patch cord fabrication and high-volume network printer provisioning."
+  },
+  {
+    title: "Enterprise Server Rack & AVR Overhaul",
+    week: "WEEK 08",
+    dates: "Aug 31 – Sep 5, 2026",
+    image: "/OJT/OJT_Images/8th Week (Aug 31-Sep 5)/4be7ba6e-96af-4de5-b6ee-a68274e66227.jfif",
+    caption: "Hot-swapping enterprise Automatic Voltage Regulators for core campus network switches."
+  },
+  {
+    title: "Rise Tower Network Hardware Logistics",
+    week: "WEEK 09",
+    dates: "Sep 7 – 12, 2026",
+    image: "/OJT/OJT_Images/9th Week (Sep 7-12)/0ede7352-44b9-4c3d-8bbd-c09dc13b672f.jfif",
+    caption: "Workstation delivery and audio-visual configuration for faculty conference sessions."
+  },
+  {
+    title: "PJP 3rd Floor Network Switch Diagnostics",
+    week: "WEEK 13",
+    dates: "Oct 5 – 10, 2026",
+    image: "/OJT/OJT_Images/13th Week (Oct 5 - 10)/244886bb-1253-474b-a4b8-fcb0fa9d67d2.jfif",
+    caption: "Isolating power intermittent dropouts and restoring floor-wide endpoint connectivity."
+  },
+  {
+    title: "Final Laboratory Clearance & Tool Inventory",
+    week: "WEEK 15",
+    dates: "Oct 19 – 23, 2026",
+    image: "/OJT/OJT_Images/15th Week (Oct 19-23)/0de7309d-5dde-4262-9ff6-766962d929cb.jfif",
+    caption: "Final tool auditing, printhead ultrasonic flushes, and 486-hour DTR verification."
+  }
+];
+---
+
+<BaseLayout title="FIELD OPERATIONS // OJT LOGS">
+  <div class="container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">SECTOR // 04</span>
+      <h1 class="ark-header-title">ON-THE-JOB TRAINING FIELD LOGS</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <!-- Overview Banner -->
+    <div class="ark-ojt-banner ark-chamfer-box ark-reticle ark-reveal">
+      <div class="ark-radar-beam"></div>
+      <div class="ark-ojt-banner-left">
+        <div class="ark-banner-badge-row">
+          <span class="ark-pill ark-pill-yellow">DEPLOYMENT SUMMARY // 486 HOURS VERIFIED</span>
+          <div class="ark-barcode">DTR-AUTH-486H</div>
+        </div>
+        <h2 class="ark-banner-title">OUR LADY OF FATIMA UNIVERSITY — IT&DS</h2>
+        <p class="ark-banner-desc">
+          Official documentation of technical internship operations completed over 15 consecutive weeks (July to October 2026). 
+          Supervised by <strong>Mr. Marlon A. Enriquez</strong> (System Administrator & Site Internship Supervisor). 
+          Covered enterprise computer hardware diagnostics, campus-wide LAN deployments, printer infrastructure maintenance, 
+          and preventative systems engineering totaling <strong>486 verified operational hours</strong>.
+        </p>
+        <div class="ark-banner-previews">
+          <button class="ark-btn js-dtr-preview-btn">
+            <i class="fa-solid fa-table-list"></i> PREVIEW OFFICIAL DTR SUMMARY TABLE
+          </button>
+        </div>
+      </div>
+
+      <div class="ark-ojt-stats-box">
+        <div class="ark-stat-row">
+          <span class="ark-stat-val">486</span>
+          <span class="ark-stat-lbl">VERIFIED OPERATIONAL HOURS</span>
+        </div>
+        <div class="ark-stat-row">
+          <span class="ark-stat-val">15</span>
+          <span class="ark-stat-lbl">CONSECUTIVE WEEKS</span>
+        </div>
+        <div class="ark-stat-row">
+          <span class="ark-stat-val">100%</span>
+          <span class="ark-stat-lbl">OFFICIAL CLEARANCE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15-Week Interactive Report Grid with In-Page Preview -->
+    <section class="ark-weekly-reports-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">ARCHIVE // 15 WEEKS</span>
+        <h2 class="ark-header-title">WEEKLY PROGRESS LOGS & PREVIEWS</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-weekly-grid">
+        {weeklyReports.map((item, idx) => (
+          <div class="ark-weekly-card ark-chamfer-box ark-reveal">
+            <div class="ark-weekly-top-bar">
+              <span class="ark-weekly-badge">WEEK {String(idx + 1).padStart(2, '0')}</span>
+              <span class="ark-weekly-dates">{item.dates}</span>
+            </div>
+            
+            <p class="ark-weekly-desc-preview">{item.description}</p>
+            
+            <div class="ark-weekly-footer">
+              <button 
+                class="ark-btn-secondary ark-btn-sm js-preview-btn" 
+                data-doc-title={`${item.week} (${item.dates})`}
+                data-doc-file={item.file}
+                data-doc-desc={item.description}
+                data-is-img="false"
+              >
+                <i class="fa-solid fa-eye"></i> PREVIEW REPORT
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Photographic Field Evidence Gallery -->
+    <section class="ark-ojt-gallery-section">
+      <div class="ark-header-bar">
+        <span class="ark-header-code">SURVEILLANCE // LOGS</span>
+        <h2 class="ark-header-title">PHOTOGRAPHIC FIELD EVIDENCE ARCHIVE</h2>
+        <div class="ark-hazard-line"></div>
+      </div>
+
+      <div class="ark-gallery-grid">
+        {photoLogs.map(photo => (
+          <div class="ark-gallery-card ark-chamfer-box ark-reveal">
+            <div class="ark-gallery-thumb-wrap">
+              <img src={photo.image} alt={photo.title} class="ark-gallery-img" loading="lazy" />
+              <div class="ark-thumb-scanlines"></div>
+              <span class="ark-gallery-tag">{photo.week}</span>
+            </div>
+            <div class="ark-gallery-info">
+              <h4 class="ark-gallery-title">{photo.title}</h4>
+              <p class="ark-gallery-caption">{photo.caption}</p>
+              <button 
+                class="ark-btn-secondary ark-btn-sm js-preview-btn"
+                data-doc-title={`${photo.title} // ${photo.week}`}
+                data-doc-file={photo.image}
+                data-doc-desc={photo.caption}
+                data-is-img="true"
+              >
+                <i class="fa-solid fa-magnifying-glass-plus"></i> INSPECT PHOTO RECORD
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- In-Page Tactical Document & Photo Preview Modal -->
+    <div class="ark-modal-backdrop" id="ark-preview-modal" aria-hidden="true">
+      <div class="ark-modal-dialog ark-chamfer-box ark-reticle">
+        <div class="ark-modal-header">
+          <div class="ark-modal-title-group">
+            <span class="ark-pill ark-pill-yellow">TELEMETRY PREVIEW // VERIFIED</span>
+            <h3 class="ark-modal-title" id="ark-modal-doc-title">Document Title</h3>
+          </div>
+          <button class="ark-modal-close" id="ark-modal-close-btn" aria-label="Close preview">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="ark-modal-meta-box">
+          <p class="ark-modal-desc" id="ark-modal-doc-desc">Document description details...</p>
+        </div>
+
+        <!-- Frame Wrappers -->
+        <div class="ark-modal-frame-wrapper" id="ark-modal-frame-wrapper">
+          <iframe id="ark-modal-iframe" src="" class="ark-modal-iframe" title="Document Preview"></iframe>
+          <img id="ark-modal-img" src="" alt="Photo Preview" class="ark-modal-img" style="display:none;" />
+          
+          <!-- DTR Summary Interactive Table -->
+          <div id="ark-modal-dtr-table" class="ark-modal-dtr-wrap" style="display:none;">
+            <div class="ark-dtr-header-block">
+              <h4>DAILY TIME RECORD SUMMARY (OFFICIAL AUDIT)</h4>
+              <p><strong>Institution:</strong> OUR LADY OF FATIMA UNIVERSITY (IT&DS)</p>
+              <p><strong>Campus Address:</strong> 120 McArthur Highway, Marulas, Valenzuela City</p>
+              <p><strong>Supervisor:</strong> Mr. Marlon A. Enriquez (System Administrator)</p>
+              <p><strong>Total Verified Hours:</strong> 486 Operational Hours (July 13 – October 23, 2026)</p>
+            </div>
+            <div class="ark-dtr-table-scroll">
+              <table class="ark-dtr-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time In</th>
+                    <th>Time Out</th>
+                    <th>Total Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>July 13, 2026</td><td>7:55 AM</td><td>8:05 PM</td><td>11 hrs 10 mins</td></tr>
+                  <tr><td>July 14, 2026</td><td>7:55 AM</td><td>8:05 PM</td><td>11 hrs 10 mins</td></tr>
+                  <tr><td>July 15, 2026</td><td>7:55 AM</td><td>8:05 PM</td><td>11 hrs 10 mins</td></tr>
+                  <tr><td>July 16, 2026</td><td>7:50 AM</td><td>8:05 PM</td><td>11 hrs 15 mins</td></tr>
+                  <tr><td>July 17, 2026</td><td>7:55 AM</td><td>8:00 PM</td><td>11 hrs 05 mins</td></tr>
+                  <tr><td>July 18, 2026</td><td>7:55 AM</td><td>7:00 PM</td><td>10 hrs 05 mins</td></tr>
+                  <tr><td>July 20, 2026</td><td>7:55 AM</td><td>8:00 PM</td><td>11 hrs 05 mins</td></tr>
+                  <tr><td>July 21, 2026</td><td>8:05 AM</td><td>7:00 PM</td><td>9 hrs 55 mins</td></tr>
+                  <tr><td>July 22, 2026</td><td>7:55 AM</td><td>5:30 PM</td><td>8 hrs 35 mins</td></tr>
+                  <tr><td>July 23, 2026</td><td>7:55 AM</td><td>5:10 PM</td><td>8 hrs 15 mins</td></tr>
+                  <tr><td>July 24, 2026</td><td>8:05 AM</td><td>5:10 PM</td><td>7 hrs 05 mins</td></tr>
+                  <tr><td>July 27, 2026</td><td>8:10 AM</td><td>8:30 PM</td><td>10 hrs 20 mins</td></tr>
+                  <tr><td>August 03, 2026</td><td>8:15 AM</td><td>8:10 PM</td><td>10 hrs 55 mins</td></tr>
+                  <tr><td>August 15, 2026</td><td>8:05 AM</td><td>8:45 PM</td><td>11 hrs 40 mins</td></tr>
+                  <tr><td>August 24, 2026</td><td>8:20 AM</td><td>6:10 PM</td><td>8 hrs 50 mins</td></tr>
+                  <tr><td>September 07, 2026</td><td>8:20 AM</td><td>5:00 PM</td><td>7 hrs 40 mins</td></tr>
+                  <tr><td>September 14, 2026</td><td>8:30 AM</td><td>5:15 PM</td><td>7 hrs 45 mins</td></tr>
+                  <tr><td>September 28, 2026</td><td>8:30 AM</td><td>5:20 PM</td><td>7 hrs 50 mins</td></tr>
+                  <tr><td>October 05, 2026</td><td>8:55 AM</td><td>5:15 PM</td><td>7 hrs 20 mins</td></tr>
+                  <tr><td>October 19, 2026</td><td>8:40 AM</td><td>5:05 PM</td><td>7 hrs 25 mins</td></tr>
+                  <tr class="ark-dtr-total-row"><td colspan="3"><strong>CUMULATIVE OPERATIONAL HOURS</strong></td><td><strong>486 HOURS</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const modal = document.getElementById('ark-preview-modal');
+  const closeBtn = document.getElementById('ark-modal-close-btn');
+  const modalTitle = document.getElementById('ark-modal-doc-title');
+  const modalDesc = document.getElementById('ark-modal-doc-desc');
+  const modalIframe = document.getElementById('ark-modal-iframe') as HTMLIFrameElement;
+  const modalImg = document.getElementById('ark-modal-img') as HTMLImageElement;
+  const modalDtr = document.getElementById('ark-modal-dtr-table');
+  const previewBtns = document.querySelectorAll('.js-preview-btn');
+  const dtrBtn = document.querySelector('.js-dtr-preview-btn');
+
+  function openPreview(title: string, file: string, desc: string, isImg: boolean, isDtr = false) {
+    if (!modal) return;
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDesc) modalDesc.textContent = desc;
+
+    if (isDtr) {
+      if (modalIframe) modalIframe.style.display = 'none';
+      if (modalImg) modalImg.style.display = 'none';
+      if (modalDtr) modalDtr.style.display = 'block';
+    } else if (isImg) {
+      if (modalIframe) modalIframe.style.display = 'none';
+      if (modalDtr) modalDtr.style.display = 'none';
+      if (modalImg) {
+        modalImg.src = file;
+        modalImg.style.display = 'block';
+      }
+    } else {
+      if (modalImg) modalImg.style.display = 'none';
+      if (modalDtr) modalDtr.style.display = 'none';
+      if (modalIframe) {
+        modalIframe.src = file;
+        modalIframe.style.display = 'block';
+      }
+    }
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePreview() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (modalIframe) modalIframe.src = '';
+    if (modalImg) modalImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  previewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const title = btn.getAttribute('data-doc-title') || 'Document Preview';
+      const file = btn.getAttribute('data-doc-file') || '';
+      const desc = btn.getAttribute('data-doc-desc') || '';
+      const isImg = btn.getAttribute('data-is-img') === 'true';
+      openPreview(title, file, desc, isImg, false);
+    });
+  });
+
+  dtrBtn?.addEventListener('click', () => {
+    openPreview('Official Daily Time Record (DTR) Summary', '', 'Cumulative time record breakdown verified by Mr. Marlon A. Enriquez (System Administrator). Total: 486 verified hours across 15 consecutive weeks.', false, true);
+  });
+
+  closeBtn?.addEventListener('click', closePreview);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closePreview();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+      closePreview();
+    }
+  });
+</script>
+
+<style>
+  .ark-ojt-banner {
+    padding: 36px;
+    margin-bottom: 40px;
+    background: var(--ark-bg-card);
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ark-banner-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .ark-banner-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin: 12px 0 8px;
+    text-transform: uppercase;
+  }
+
+  .ark-banner-desc {
+    font-size: 0.92rem;
+    color: var(--ark-text-body);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .ark-banner-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .ark-ojt-stats-box {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ark-stat-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ark-stat-val {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--ark-yellow);
+    line-height: 1;
+  }
+
+  .ark-stat-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ark-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* Weekly Reports Grid */
+  .ark-weekly-reports-section, .ark-ojt-gallery-section {
+    margin-top: 48px;
+  }
+
+  .ark-weekly-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+
+  .ark-weekly-card {
+    padding: 20px;
+    background: var(--ark-bg-card);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ark-border-mid);
+    transition: var(--ark-transition);
+  }
+
+  .ark-weekly-card:hover {
+    border-color: var(--ark-yellow);
+    transform: translateY(-2px);
+  }
+
+  .ark-weekly-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .ark-weekly-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ark-bg-base);
+    background: var(--ark-yellow);
+    padding: 2px 8px;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 0 100%);
+  }
+
+  .ark-weekly-dates {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-weekly-desc-preview {
+    font-size: 0.82rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+
+  .ark-weekly-footer {
+    margin-top: auto;
+  }
+
+  .ark-btn-sm {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* Gallery Grid */
+  .ark-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .ark-gallery-card {
+    background: var(--ark-bg-card);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ark-border-mid);
+    overflow: hidden;
+  }
+
+  .ark-gallery-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--ark-bg-base);
+  }
+
+  .ark-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .ark-gallery-card:hover .ark-gallery-img {
+    transform: scale(1.05);
+  }
+
+  .ark-gallery-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(10, 11, 14, 0.85);
+    border: 1px solid var(--ark-yellow);
+    color: var(--ark-yellow);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .ark-gallery-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .ark-gallery-title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 6px;
+  }
+
+  .ark-gallery-caption {
+    font-size: 0.8rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+
+  /* Modal Dialog */
+  .ark-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 14, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .ark-modal-backdrop.active {
+    display: flex;
+  }
+
+  .ark-modal-dialog {
+    width: 100%;
+    max-width: 960px;
+    max-height: 90vh;
+    background: var(--ark-bg-card);
+    border: 2px solid var(--ark-yellow);
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    box-shadow: 0 0 40px var(--ark-yellow-glow);
+  }
+
+  .ark-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .ark-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .ark-modal-close {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    color: var(--ark-text-bright);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--ark-transition);
+  }
+
+  .ark-modal-close:hover {
+    background: var(--ark-hazard-red);
+    border-color: var(--ark-hazard-red);
+  }
+
+  .ark-modal-meta-box {
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+
+  .ark-modal-desc {
+    font-size: 0.85rem;
+    color: var(--ark-text-body);
+    line-height: 1.5;
+  }
+
+  .ark-modal-frame-wrapper {
+    flex: 1;
+    height: 60vh;
+    border: 1px solid var(--ark-border-mid);
+    background: #000;
+    overflow-y: auto;
+  }
+
+  .ark-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .ark-modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
+
+  /* DTR Summary Table Styling */
+  .ark-modal-dtr-wrap {
+    padding: 20px;
+    background: var(--ark-bg-surface);
+  }
+
+  .ark-dtr-header-block {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--ark-border-subtle);
+    padding-bottom: 12px;
+  }
+
+  .ark-dtr-header-block h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--ark-yellow);
+    margin-bottom: 6px;
+  }
+
+  .ark-dtr-header-block p {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ark-text-body);
+    margin-bottom: 3px;
+  }
+
+  .ark-dtr-table-scroll {
+    overflow-x: auto;
+  }
+
+  .ark-dtr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .ark-dtr-table th {
+    background: var(--ark-bg-base);
+    color: var(--ark-yellow);
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid var(--ark-border-mid);
+  }
+
+  .ark-dtr-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--ark-border-subtle);
+    color: var(--ark-text-body);
+  }
+
+  .ark-dtr-table tr:hover {
+    background: rgba(255, 230, 0, 0.04);
+  }
+
+  .ark-dtr-total-row td {
+    background: var(--ark-yellow-dim);
+    color: var(--ark-yellow);
+    font-weight: 700;
+    border-top: 2px solid var(--ark-yellow);
+  }
+
+  @media (max-width: 900px) {
+    .ark-ojt-banner {
+      grid-template-columns: 1fr;
+    }
+    .ark-modal-dialog {
+      padding: 16px;
+    }
+  }
+</style>

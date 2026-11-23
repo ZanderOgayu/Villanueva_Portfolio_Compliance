@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c10" />
+      <stop offset="50%" stop-color="#121620" />
+      <stop offset="100%" stop-color="#08090c" />
+    </linearGradient>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,230,0,0.06)" stroke-width="1" />
+    </pattern>
+    <pattern id="hazard" width="20" height="20" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <rect width="10" height="20" fill="#ffe600" />
+      <rect x="10" width="10" height="20" fill="#0a0c10" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+  <rect width="800" height="450" fill="url(#grid)" />
+
+  <!-- Top Hazard Bar -->
+  <rect x="0" y="0" width="800" height="6" fill="url(#hazard)" />
+
+  <!-- Technical Corner Brackets -->
+  <path d="M 20 40 L 40 40 M 20 40 L 20 60" fill="none" stroke="#ffe600" stroke-width="2" />
+  <path d="M 780 40 L 760 40 M 780 40 L 780 60" fill="none" stroke="#ffe600" stroke-width="2" />
+  <path d="M 20 420 L 40 420 M 20 420 L 20 400" fill="none" stroke="#00f0ff" stroke-width="2" />
+  <path d="M 780 420 L 760 420 M 780 420 L 780 400" fill="none" stroke="#00f0ff" stroke-width="2" />
+
+  <!-- Technical Header Meta -->
+  <text x="35" y="32" font-family="'Share Tech Mono', monospace" font-size="11" fill="#ffe600" letter-spacing="2">PROTOCOL // OP-01</text>
+  <text x="560" y="32" font-family="'Share Tech Mono', monospace" font-size="11" fill="#00f0ff" letter-spacing="2">CLEARANCE: LEVEL 5 [TOP SECRET]</text>
+
+  <!-- Title & Subtitle -->
+  <text x="50" y="85" font-family="'Barlow Condensed', sans-serif" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="2">VORTEXSHIFT CIPHER</text>
+  <text x="50" y="112" font-family="'Rajdhani', sans-serif" font-size="15" font-weight="700" fill="#ffe600" letter-spacing="3">HYBRID CRYPTOGRAPHIC ALGORITHM &amp; PIPELINE MATRIX</text>
+
+  <!-- Pipeline Diagram Container -->
+  <!-- Layer 1 -->
+  <g transform="translate(60, 150)">
+    <polygon points="0,0 180,0 195,15 195,110 15,110 0,95" fill="#161b26" stroke="#ffe600" stroke-width="1.5" />
+    <rect x="0" y="0" width="195" height="4" fill="#ffe600" />
+    <text x="15" y="24" font-family="'Share Tech Mono', monospace" font-size="10" fill="#ffe600" letter-spacing="1">LAYER 01 // SUBSTITUTION</text>
+    <text x="15" y="48" font-family="'Rajdhani', sans-serif" font-size="15" font-weight="700" fill="#ffffff">POSITIONAL CAESAR</text>
+    <text x="15" y="70" font-family="'Share Tech Mono', monospace" font-size="10.5" fill="#00f0ff">shift(i)=(k + 2i) mod 26</text>
+    <text x="15" y="92" font-family="'Share Tech Mono', monospace" font-size="9" fill="#8892a0">Breaks character frequency</text>
+  </g>
+
+  <!-- Flow Arrow 1 -->
+  <g transform="translate(265, 205)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#ffe600" stroke-width="2" stroke-dasharray="4,4" />
+    <polygon points="30,-5 40,0 30,5" fill="#ffe600" />
+  </g>
+
+  <!-- Layer 2 -->
+  <g transform="translate(315, 150)">
+    <polygon points="0,0 180,0 195,15 195,110 15,110 0,95" fill="#161b26" stroke="#00f0ff" stroke-width="1.5" />
+    <rect x="0" y="0" width="195" height="4" fill="#00f0ff" />
+    <text x="15" y="24" font-family="'Share Tech Mono', monospace" font-size="10" fill="#00f0ff" letter-spacing="1">LAYER 02 // PERMUTATION</text>
+    <text x="15" y="48" font-family="'Rajdhani', sans-serif" font-size="15" font-weight="700" fill="#ffffff">RAIL FENCE TRANSPOSITION</text>
+    <text x="15" y="70" font-family="'Share Tech Mono', monospace" font-size="10.5" fill="#ffe600">N-Rails Zigzag Array</text>
+    <text x="15" y="92" font-family="'Share Tech Mono', monospace" font-size="9" fill="#8892a0">Scrambles physical order</text>
+  </g>
+
+  <!-- Flow Arrow 2 -->
+  <g transform="translate(520, 205)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#00f0ff" stroke-width="2" stroke-dasharray="4,4" />
+    <polygon points="30,-5 40,0 30,5" fill="#00f0ff" />
+  </g>
+
+  <!-- Layer 3 -->
+  <g transform="translate(560, 150)">
+    <polygon points="0,0 180,0 195,15 195,110 15,110 0,95" fill="#161b26" stroke="#ff334b" stroke-width="1.5" />
+    <rect x="0" y="0" width="195" height="4" fill="#ff334b" />
+    <text x="15" y="24" font-family="'Share Tech Mono', monospace" font-size="10" fill="#ff334b" letter-spacing="1">LAYER 03 // STRUCTURAL</text>
+    <text x="15" y="48" font-family="'Rajdhani', sans-serif" font-size="15" font-weight="700" fill="#ffffff">MIRROR FOLD REVERSAL</text>
+    <text x="15" y="70" font-family="'Share Tech Mono', monospace" font-size="10.5" fill="#ffffff">rail[r] = rev(rail[r])</text>
+    <text x="15" y="92" font-family="'Share Tech Mono', monospace" font-size="9" fill="#8892a0">Compounding diffusion</text>
+  </g>
+
+  <!-- Bottom Technical Console Strip -->
+  <g transform="translate(60, 290)">
+    <rect width="695" height="85" fill="#0d1017" stroke="#252b3b" stroke-width="1" />
+    <rect x="0" y="0" width="12" height="85" fill="#ffe600" />
+    <text x="25" y="24" font-family="'Share Tech Mono', monospace" font-size="11" fill="#ffe600">&gt; ALGORITHM VERIFICATION // REVERSIBILITY TEST</text>
+    <text x="25" y="46" font-family="'Share Tech Mono', monospace" font-size="10.5" fill="#a2abb8">ENCRYPT: C = MirrorFold( RailFence( PosShift(P, key), rails ), rails )</text>
+    <text x="25" y="66" font-family="'Share Tech Mono', monospace" font-size="10.5" fill="#00f0ff">DECRYPT: P = PosShift-1( RailFence-1( MirrorFold-1(C, rails), rails ), key )</text>
+  </g>
+
+  <!-- Bottom Meta Bar -->
+  <text x="60" y="415" font-family="'Share Tech Mono', monospace" font-size="9.5" fill="#6f7887">SEC_AUTH: ZANDER RHOI VILLANUEVA // AUTHORED IN PURE PYTHON 3</text>
+  <text x="590" y="415" font-family="'Share Tech Mono', monospace" font-size="9.5" fill="#ffe600">SYS_CODE: VORTEX-CORE-v2.1</text>
+</svg>

@@ -1,0 +1,348 @@
+/* ============================================================
+   ENDFIELD TACTICAL MOTIFS & ANIMATIONS
+   ============================================================ */
+
+/* 45° Chamfered Card Polygons with Dual Diagonal Cut */
+.ark-chamfer-box {
+  position: relative;
+  background: var(--ark-bg-card);
+  border: 1px solid var(--ark-border-mid);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+  transition: var(--ark-transition);
+}
+
+.ark-chamfer-box:hover {
+  background: var(--ark-bg-card-hover);
+  border-color: var(--ark-yellow);
+  box-shadow: 0 0 24px var(--ark-yellow-glow), inset 0 0 16px rgba(255, 230, 0, 0.04);
+}
+
+/* Single-Corner Tactical Cut (Buttons & Small Badges) */
+.ark-cut-sm {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+/* L-Bracket Corner HUD Anchors with Targeting Reticles */
+.ark-reticle {
+  position: relative;
+}
+.ark-reticle::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px;
+  width: 12px; height: 12px;
+  border-top: 2px solid var(--ark-yellow);
+  border-left: 2px solid var(--ark-yellow);
+  pointer-events: none;
+  z-index: 2;
+  transition: var(--ark-transition);
+}
+.ark-reticle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; right: -2px;
+  width: 12px; height: 12px;
+  border-bottom: 2px solid var(--ark-cyan);
+  border-right: 2px solid var(--ark-cyan);
+  pointer-events: none;
+  z-index: 2;
+  transition: var(--ark-transition);
+}
+.ark-reticle:hover::before {
+  width: 18px; height: 18px;
+  border-color: var(--ark-yellow);
+  box-shadow: 0 0 8px var(--ark-yellow);
+}
+.ark-reticle:hover::after {
+  width: 18px; height: 18px;
+  border-color: var(--ark-cyan);
+  box-shadow: 0 0 8px var(--ark-cyan);
+}
+
+/* Tactical Section Header Bar with Hazard Stripe */
+.ark-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ark-border-subtle);
+  position: relative;
+}
+
+.ark-header-code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ark-bg-base);
+  background: var(--ark-yellow);
+  padding: 3px 10px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+.ark-header-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--ark-text-bright);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ark-hazard-line {
+  flex: 1;
+  height: 4px;
+  background: var(--ark-hazard-stripes);
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .ark-header-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .ark-header-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Endfield High-Visibility Tactical Buttons */
+.ark-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 22px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ark-bg-base);
+  background: var(--ark-yellow);
+  border: 1px solid var(--ark-yellow);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  transition: var(--ark-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.ark-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.ark-btn:hover {
+  background: #fff033;
+  box-shadow: 0 0 20px var(--ark-yellow-glow);
+  transform: translateY(-2px);
+}
+
+.ark-btn:hover::before {
+  left: 100%;
+}
+
+.ark-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ark-text-bright);
+  background: var(--ark-bg-surface);
+  border: 1px solid var(--ark-border-mid);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  transition: var(--ark-transition);
+}
+
+.ark-btn-secondary:hover {
+  background: var(--ark-bg-card-hover);
+  border-color: var(--ark-cyan);
+  color: var(--ark-cyan);
+  box-shadow: 0 0 18px var(--ark-cyan-glow);
+  transform: translateY(-2px);
+}
+
+/* Monospace Pill Badges */
+.ark-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ark-text-body);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--ark-border-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ark-pill-yellow, .ark-pill-amber {
+  color: var(--ark-yellow);
+  background: var(--ark-yellow-dim);
+  border-color: rgba(255, 230, 0, 0.35);
+}
+
+.ark-pill-cyan {
+  color: var(--ark-cyan);
+  background: var(--ark-cyan-dim);
+  border-color: rgba(0, 240, 255, 0.35);
+}
+
+/* Tactical Radar Sweep Animation */
+@keyframes radar-sweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+.ark-radar-beam {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ark-yellow), transparent);
+  box-shadow: 0 0 12px var(--ark-yellow);
+  animation: radar-sweep 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Glitch Text Effect */
+@keyframes ark-glitch-kf {
+  0% { transform: translate(0); text-shadow: none; }
+  20% { transform: translate(-3px, 1px); text-shadow: -2px 0 var(--ark-cyan), 2px 0 var(--ark-hazard-red); }
+  40% { transform: translate(3px, -1px); text-shadow: 2px 0 var(--ark-cyan), -2px 0 var(--ark-hazard-red); }
+  60% { transform: translate(-2px, 2px); text-shadow: -2px 0 var(--ark-yellow); }
+  80% { transform: translate(2px, -1px); text-shadow: 2px 0 var(--ark-yellow); }
+  100% { transform: translate(0); text-shadow: none; }
+}
+
+.ark-glitch:hover {
+  animation: ark-glitch-kf 0.28s steps(2, end) 1;
+  color: var(--ark-yellow);
+}
+
+/* CRT Scanlines (Fixed Overlay, Non-Blocking) */
+.ark-scanline-panel::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none !important;
+  opacity: 0.25;
+  z-index: 9999;
+}
+
+/* Audio Signal Equalizer Bars (Endfield Comms HUD) */
+.ark-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.ark-eq-bar {
+  width: 2.5px;
+  background: var(--ark-yellow);
+  border-radius: 1px;
+  animation: ark-eq-pulse 1s ease-in-out infinite alternate;
+}
+
+.ark-eq-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.ark-eq-bar:nth-child(2) { height: 100%; animation-delay: 0.35s; }
+.ark-eq-bar:nth-child(3) { height: 65%; animation-delay: 0.15s; }
+.ark-eq-bar:nth-child(4) { height: 85%; animation-delay: 0.45s; }
+
+@keyframes ark-eq-pulse {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
+/* Tactical Barcode Stencil */
+.ark-barcode {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ark-text-muted);
+  letter-spacing: 0.12em;
+}
+
+.ark-barcode::before {
+  content: '|||| | ||||| ||';
+  font-family: var(--font-mono);
+  color: var(--ark-yellow);
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+/* Endfield Tactical Hazard Tag */
+.ark-hazard-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: var(--ark-yellow);
+  color: #000000;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+/* Status Indicator Dot */
+.ark-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ark-success-green);
+  box-shadow: 0 0 8px var(--ark-success-green);
+  display: inline-block;
+  animation: ark-pulse 2s infinite;
+}
+
+@keyframes ark-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Staggered Mechanical Reveal on Load */
+@keyframes mechanical-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ark-reveal {
+  animation: mechanical-slide-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

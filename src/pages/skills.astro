@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SkillCategoryCard from '../components/SkillCategoryCard.astro';
+import skillsData from '../data/skills.json';
+---
+
+<BaseLayout title="OPERATOR CAPABILITIES // SKILLS MATRIX">
+  <div class="container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">SYSTEM // 02</span>
+      <h1 class="ark-header-title">ENGINEERING CAPABILITIES MATRIX</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <!-- Philosophy Banner -->
+    <div class="ark-skills-intro ark-chamfer-box ark-reticle">
+      <div class="ark-intro-content">
+        <span class="ark-pill ark-pill-yellow">METRIC PROTOCOL: CONTEXTUAL EVIDENCE</span>
+        <h2 class="ark-intro-title">CATEGORIZED OPERATIONAL STACK & AI FORCE MULTIPLIERS</h2>
+        <p class="ark-intro-desc">
+          Every competency below is structured by technical domain, highlighting real-world applications, 
+          system configurations, and how advanced AI agentic tools are actively integrated into the software engineering workflow.
+        </p>
+      </div>
+    </div>
+
+    <!-- Category Filter Controls -->
+    <div class="ark-filter-strip">
+      <button class="ark-filter-btn active" data-filter="all">ALL DOMAINS</button>
+      {skillsData.map(cat => (
+        <button class="ark-filter-btn" data-filter={cat.category_id}>
+          {cat.category_name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Skills Category Panels -->
+    <div class="ark-categories-wrapper">
+      {skillsData.map(category => (
+        <div class="ark-category-container" data-category={category.category_id}>
+          <SkillCategoryCard
+            categoryName={category.category_name}
+            badgeCode={category.badge_code}
+            description={category.description}
+            skills={category.skills}
+            isAiTools={category.category_id === 'ai_tools'}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.ark-filter-btn');
+  const categories = document.querySelectorAll('.ark-category-container');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      categories.forEach(cat => {
+        const catId = cat.getAttribute('data-category');
+        if (filter === 'all' || filter === catId) {
+          (cat as HTMLElement).style.display = 'block';
+        } else {
+          (cat as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .ark-skills-intro {
+    padding: 32px;
+    margin-bottom: 32px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-intro-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin: 10px 0;
+    text-transform: uppercase;
+  }
+
+  .ark-intro-desc {
+    font-size: 0.92rem;
+    color: var(--ark-text-body);
+    line-height: 1.6;
+    max-width: 860px;
+  }
+
+  .ark-filter-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .ark-filter-btn {
+    padding: 8px 16px;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ark-text-body);
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    transition: var(--ark-transition);
+  }
+
+  .ark-filter-btn:hover {
+    color: var(--ark-yellow);
+    border-color: var(--ark-yellow);
+  }
+
+  .ark-filter-btn.active {
+    background: var(--ark-yellow);
+    color: var(--ark-bg-base);
+    border-color: var(--ark-yellow);
+  }
+</style>

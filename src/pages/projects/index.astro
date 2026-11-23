@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+allProjects.sort((a, b) => a.data.order - b.data.order);
+
+const categories = ['All', 'Web Application', 'Cryptography', 'System Administration', 'Game Development', 'Machine Learning'];
+---
+
+<BaseLayout title="OPERATIONS ARCHIVE // PROJECTS">
+  <div class="container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">SECTOR // 03</span>
+      <h1 class="ark-header-title">OPERATIONS & CASE STUDIES ARCHIVE</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <!-- Category Filter Controls -->
+    <div class="ark-project-filters">
+      {categories.map((cat, i) => (
+        <button class={`ark-filter-btn ${i === 0 ? 'active' : ''}`} data-pfilter={cat}>
+          {cat.toUpperCase()}
+        </button>
+      ))}
+    </div>
+
+    <div class="ark-projects-catalog">
+      {allProjects.map(proj => (
+        <div class="ark-project-item" data-category={proj.data.category}>
+          <ProjectCard
+            title={proj.data.title}
+            operationCode={proj.data.operationCode}
+            tagline={proj.data.tagline}
+            category={proj.data.category}
+            techStack={proj.data.techStack}
+            clearanceLevel={proj.data.clearanceLevel}
+            slug={proj.id}
+            coverImage={proj.data.coverImage}
+            liveDemoUrl={proj.data.liveDemoUrl}
+            downloadUrl={proj.data.downloadUrl}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.ark-project-filters .ark-filter-btn');
+  const projectItems = document.querySelectorAll('.ark-project-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-pfilter');
+
+      projectItems.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        if (filter === 'All' || filter === itemCat) {
+          (item as HTMLElement).style.display = 'block';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .ark-project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .ark-filter-btn {
+    padding: 8px 16px;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ark-text-body);
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    transition: var(--ark-transition);
+  }
+
+  .ark-filter-btn:hover {
+    color: var(--ark-amber);
+    border-color: var(--ark-amber);
+  }
+
+  .ark-filter-btn.active {
+    background: var(--ark-amber);
+    color: var(--ark-bg-base);
+    border-color: var(--ark-amber);
+  }
+
+  .ark-projects-catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .ark-projects-catalog {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

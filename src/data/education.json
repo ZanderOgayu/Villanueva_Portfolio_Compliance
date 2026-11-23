@@ -1,0 +1,35 @@
+[
+  {
+    "institution": "Pamantasan Ng Lungsod Ng Valenzuela",
+    "degree": "Bachelor of Science in Information Technology (BSIT)",
+    "period": "2023 – Present",
+    "status": "Currently 3rd Year",
+    "location": "Valenzuela City, Philippines",
+    "highlights": [
+      "Concentrations: Full-Stack Web Development, System Administration, Network Engineering, Machine Learning",
+      "Lead developer for multiple academic capstone initiatives (VrakeIt, MyHomeVault)",
+      "Published independent game projects on itch.io under Haraya Studios"
+    ]
+  },
+  {
+    "institution": "Electron College of Technical Education",
+    "degree": "Information & Communications Technology (2-Year Tech Course)",
+    "period": "2021 – 2023",
+    "status": "Graduated",
+    "location": "Valenzuela City, Philippines",
+    "highlights": [
+      "Completed 300-hour industry On-the-Job Training (OJT) attachment at Laptop and PC Outlet",
+      "Specialized in computer hardware diagnostics, operating systems, and client support workflows"
+    ]
+  },
+  {
+    "institution": "Gen T. De Leon National High School",
+    "degree": "Junior High School Education",
+    "period": "2017 – 2021",
+    "status": "Graduated with Honors",
+    "location": "Valenzuela City, Philippines",
+    "highlights": [
+      "Consistent academic honors and foundational ICT track participation"
+    ]
+  }
+]

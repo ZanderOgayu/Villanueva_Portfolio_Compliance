@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="TRANSMISSION CHANNEL // CONTACT">
+  <div class="container ark-contact-container">
+    <div class="ark-header-bar">
+      <span class="ark-header-code">COMMS // 06</span>
+      <h1 class="ark-header-title">SECURE TRANSMISSION CHANNEL</h1>
+      <div class="ark-hazard-line"></div>
+    </div>
+
+    <div class="ark-contact-grid">
+      <!-- Left: Communications Info -->
+      <div class="ark-contact-info-panel ark-chamfer-box ark-reticle">
+        <span class="ark-pill ark-pill-amber">PROTOCOL: DIRECT ENCRYPTED SIGNAL</span>
+        <h2 class="ark-cip-title">INITIATE CONTACT</h2>
+        <p class="ark-cip-desc">
+          Have an engineering opportunity, software collaboration, or internship inquiry? 
+          Send a transmission directly or connect via verified channels below.
+        </p>
+
+        <div class="ark-channel-list">
+          <a href="mailto:zhandercv@gmail.com" class="ark-channel-item">
+            <div class="ark-channel-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="ark-channel-text">
+              <span class="ark-channel-lbl">DIRECT EMAIL TRANSMISSION</span>
+              <span class="ark-channel-val">zhandercv@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/ZanderOgayu" target="_blank" rel="noopener noreferrer" class="ark-channel-item">
+            <div class="ark-channel-icon"><i class="fa-brands fa-github"></i></div>
+            <div class="ark-channel-text">
+              <span class="ark-channel-lbl">GITHUB REPOSITORY NETWORK</span>
+              <span class="ark-channel-val">github.com/ZanderOgayu</span>
+            </div>
+          </a>
+
+          <a href="https://www.facebook.com/zander.villanueva.59114" target="_blank" rel="noopener noreferrer" class="ark-channel-item">
+            <div class="ark-channel-icon"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="ark-channel-text">
+              <span class="ark-channel-lbl">FACEBOOK PROFILE</span>
+              <span class="ark-channel-val">Zander Villanueva</span>
+            </div>
+          </a>
+
+          <div class="ark-channel-item">
+            <div class="ark-channel-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="ark-channel-text">
+              <span class="ark-channel-lbl">GEOGRAPHIC DEPLOYMENT LOCATION</span>
+              <span class="ark-channel-val">Valenzuela City, Metro Manila, Philippines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Direct Transmission Form -->
+      <div class="ark-contact-form-panel ark-chamfer-box ark-reticle">
+        <span class="ark-pill ark-pill-cyan">TACTICAL DISPATCH FORM</span>
+        <h3 class="ark-form-title">TRANSMIT MESSAGE</h3>
+
+        <form action="mailto:zhandercv@gmail.com" method="POST" enctype="text/plain" class="ark-form">
+          <div class="ark-form-group">
+            <label for="name" class="ark-form-label">CALL SIGN / FULL NAME</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. Recruiter / Collaborator" class="ark-form-input" />
+          </div>
+
+          <div class="ark-form-group">
+            <label for="email" class="ark-form-label">RETURN SIGNAL ADDRESS (EMAIL)</label>
+            <input type="email" id="email" name="email" required placeholder="name@organization.com" class="ark-form-input" />
+          </div>
+
+          <div class="ark-form-group">
+            <label for="subject" class="ark-form-label">TRANSMISSION SUBJECT</label>
+            <input type="text" id="subject" name="subject" required placeholder="Project Inquiry / Job Opportunity" class="ark-form-input" />
+          </div>
+
+          <div class="ark-form-group">
+            <label for="message" class="ark-form-label">PAYLOAD (MESSAGE CONTENT)</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Enter message transmission..." class="ark-form-textarea"></textarea>
+          </div>
+
+          <button type="submit" class="ark-btn">
+            <i class="fa-solid fa-paper-plane"></i> DISPATCH TRANSMISSION
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ark-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .ark-contact-info-panel, .ark-contact-form-panel {
+    padding: 36px;
+    background: var(--ark-bg-card);
+  }
+
+  .ark-cip-title, .ark-form-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin: 12px 0 8px;
+    text-transform: uppercase;
+  }
+
+  .ark-cip-desc {
+    font-size: 0.9rem;
+    color: var(--ark-text-body);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .ark-channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ark-channel-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    transition: var(--ark-transition);
+  }
+
+  .ark-channel-item:hover {
+    border-color: var(--ark-amber);
+    transform: translateX(4px);
+  }
+
+  .ark-channel-icon {
+    font-size: 1.4rem;
+    color: var(--ark-amber);
+    width: 32px;
+    text-align: center;
+  }
+
+  .ark-channel-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ark-channel-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ark-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-channel-val {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+  }
+
+  /* Form */
+  .ark-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 16px;
+  }
+
+  .ark-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ark-form-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-cyan);
+    letter-spacing: 0.08em;
+  }
+
+  .ark-form-input, .ark-form-textarea {
+    padding: 12px 14px;
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-mid);
+    color: var(--ark-text-bright);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--ark-transition);
+  }
+
+  .ark-form-input:focus, .ark-form-textarea:focus {
+    border-color: var(--ark-amber);
+    box-shadow: 0 0 10px var(--ark-amber-glow);
+  }
+
+  @media (max-width: 900px) {
+    .ark-contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

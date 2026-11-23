@@ -1,0 +1,166 @@
+---
+interface Props {
+  title: string;
+  company: string;
+  period: string;
+  role: string;
+  location: string;
+  hoursTotal: number;
+  slug: string;
+  metrics?: { label: string; value: string }[];
+  tags: string[];
+}
+
+const {
+  title,
+  company,
+  period,
+  role,
+  location,
+  hoursTotal,
+  slug,
+  metrics,
+  tags
+} = Astro.props;
+---
+
+<div class="ark-ojt-card ark-chamfer-box ark-reticle">
+  <div class="ark-ojt-header">
+    <div class="ark-ojt-meta-top">
+      <span class="ark-pill ark-pill-amber">OJT DEPLOYMENT // {hoursTotal} HOURS</span>
+      <span class="ark-ojt-period">{period}</span>
+    </div>
+    <h3 class="ark-ojt-title">
+      <a href={`/ojt/${slug}`}>{title}</a>
+    </h3>
+    <div class="ark-ojt-sub">
+      <span class="ark-ojt-company">{company}</span>
+      <span class="ark-ojt-role">[{role}]</span>
+      <span class="ark-ojt-loc">({location})</span>
+    </div>
+  </div>
+
+  {metrics && metrics.length > 0 && (
+    <div class="ark-ojt-metrics">
+      {metrics.map(m => (
+        <div class="ark-ojt-metric-item">
+          <span class="ark-metric-val">{m.value}</span>
+          <span class="ark-metric-lbl">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <div class="ark-ojt-tags">
+    {tags.map(tag => (
+      <span class="ark-pill">{tag}</span>
+    ))}
+  </div>
+
+  <div class="ark-ojt-actions">
+    <a href={`/ojt/${slug}`} class="ark-btn">
+      <i class="fa-solid fa-file-contract"></i> VIEW FULL FIELD REPORT
+    </a>
+  </div>
+</div>
+
+<style>
+  .ark-ojt-card {
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+
+  .ark-ojt-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ark-ojt-period {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ark-text-muted);
+  }
+
+  .ark-ojt-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .ark-ojt-title a:hover {
+    color: var(--ark-amber);
+  }
+
+  .ark-ojt-sub {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .ark-ojt-company {
+    color: var(--ark-amber);
+    font-weight: 700;
+  }
+
+  .ark-ojt-role {
+    color: var(--ark-cyan);
+  }
+
+  .ark-ojt-loc {
+    color: var(--ark-text-muted);
+  }
+
+  .ark-ojt-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    background: var(--ark-bg-surface);
+    border: 1px solid var(--ark-border-subtle);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .ark-ojt-metric-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ark-metric-val {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ark-text-bright);
+    line-height: 1.1;
+  }
+
+  .ark-metric-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ark-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ark-ojt-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .ark-ojt-actions {
+    display: flex;
+    gap: 12px;
+  }
+</style>

@@ -1,0 +1,47 @@
+[
+  {
+    "company": "Our Lady of Fatima University (IT&DS)",
+    "role": "Systems Administration & IT Infrastructure Intern (OJT)",
+    "period": "July 13, 2026 – October 23, 2026",
+    "location": "Valenzuela City, Philippines",
+    "description": "Completed 486 verified operational hours across 15 consecutive weeks supervised by System Administrator Mr. Marlon A. Enriquez. Led departmental LAN cabling, printer infrastructure overhauls, network switch provisioning, and hardware diagnostics.",
+    "skills_applied": [
+      "Systems Administration",
+      "Network Infrastructure",
+      "Hardware Diagnostics",
+      "LAN Cabling",
+      "Preventative Maintenance"
+    ],
+    "has_ojt_report": true,
+    "ojt_slug": "olfu-itds"
+  },
+  {
+    "company": "Haraya Studios",
+    "role": "Game Developer & Systems Programmer",
+    "period": "2023 – Present",
+    "location": "Independent / Academic",
+    "description": "Collaborated on independent game titles created in Unity and Java OOP. Published 'The Fifth Stage' and 'Escape from the Salamangkero's Maze' on itch.io.",
+    "skills_applied": [
+      "Unity Engine",
+      "C#",
+      "Java",
+      "Game Design",
+      "State Machines"
+    ],
+    "has_ojt_report": false
+  },
+  {
+    "company": "Mayah Store",
+    "role": "Inventory & Operations Assistant",
+    "period": "January 2022 – July 2022",
+    "location": "Valenzuela City, Philippines",
+    "description": "Managed retail inventory records, stock reconciliation, and cash handling workflows.",
+    "skills_applied": [
+      "Inventory Tracking",
+      "Data Entry",
+      "Microsoft Excel",
+      "Bookkeeping"
+    ],
+    "has_ojt_report": false
+  }
+]
