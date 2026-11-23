@@ -20,6 +20,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://zander-p
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Favicon (Tactical ZRV Monogram) -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
@@ -38,6 +43,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://zander-p
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-<!-- Global & Theme Styles -->
-<link rel="stylesheet" href="/src/styles/global.css" />
-<link rel="stylesheet" href="/src/styles/arknights-ui.css" />
+<!-- Google Fonts Preconnect & Stylesheet -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" />
